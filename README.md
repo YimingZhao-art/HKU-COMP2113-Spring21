@@ -25,3 +25,12 @@
    - Water, fire, grass form a countering circle, while neatral keeps same facing any atrribute.
    - There are `4` wild creatures, one of which is the `Boss`.
    - Winning boss then you will `win` the game.
+
+2. Features
+
+   a. Wizard management system (using arrays and strings to store current status information)
+   b. Randomized battle system (randomization of damage and opponents encountered) (The information of each battle is generated at the beginning of the battle and disappears       after the end)
+   c. Boss battle (the information of each battle is generated at the beginning of the battle and disappears after the end)
+   d. Mini game (content will come from different cpp and h files) (the information of each game is generated at the beginning of the game and disappears after the end)
+   e. Menu interface (different functions will come from different cpp, h files)
+
