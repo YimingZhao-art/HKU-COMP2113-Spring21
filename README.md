@@ -8,8 +8,8 @@
 
 ##### Pokemon
 0. Brief Description
-Players can choose an initial Pokemon at the beginning. In this game, players can fight, train, strengthen their Pokemon, and defeat the bosses that appear in the game. In addition to the regular Pokémon mode, you can choose to play several types of mini games provided to earn rewards and have fun.
-The game provides a file io-based archive system, allowing you to continue your unfinished adventure the next time you open it.
+   Players can choose an initial Pokemon at the beginning. In this game, players can fight, train, strengthen their Pokemon, and defeat the bosses that appear in the game. In addition to the regular Pokémon mode, you can choose to play several types of mini games provided to earn rewards and have fun.
+   The game provides a file io-based archive system, allowing you to continue your unfinished adventure the next time you open it.
 
 1. Rules
    - User will choose a creature out of three at first.
