@@ -9,8 +9,8 @@
 ##### Pokemon
 0. Brief Description
 
-   Players can choose an initial Pokemon at the beginning. In this game, players can fight, train, strengthen their Pokemon, and defeat the bosses that appear in the game. In addition to the regular Pokémon mode, you can choose to play several types of mini games provided to earn rewards and have fun.
-   The game provides a file io-based archive system, allowing you to continue your unfinished adventure the next time you open it.
+   - Players can choose an initial Pokemon at the beginning. In this game, players can fight, train, strengthen their Pokemon, and defeat the bosses that appear in the game. In addition to the regular Pokémon mode, you can choose to play several types of mini games provided to earn rewards and have fun.
+   - The game provides a file io-based archive system, allowing you to continue your unfinished adventure the next time you open it.
 
 1. Rules
    - User will choose a creature out of three at first.
@@ -28,9 +28,10 @@
 
 2. Features
 
-   a. Wizard management system (using arrays and strings to store current status information)
-   b. Randomized battle system (randomization of damage and opponents encountered) (The information of each battle is generated at the beginning of the battle and disappears       after the end)
-   c. Boss battle (the information of each battle is generated at the beginning of the battle and disappears after the end)
-   d. Mini game (content will come from different cpp and h files) (the information of each game is generated at the beginning of the game and disappears after the end)
-   e. Menu interface (different functions will come from different cpp, h files)
+   - a. Wizard management system (using arrays and strings to store current status information)
+   - b. Randomized battle system (randomization of damage and opponents encountered) (The information of each battle is generated at the beginning of the battle and disappears       after the end)
+   - c. Boss battle (the information of each battle is generated at the beginning of the battle and disappears after the end)
+   - d. Mini game (content will come from different cpp and h files) (the information of each game is generated at the beginning of the game and disappears after the end)
+   - e. Menu interface (different functions will come from different cpp, h files)
+   
 
