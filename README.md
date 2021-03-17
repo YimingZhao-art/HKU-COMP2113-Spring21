@@ -85,5 +85,5 @@
 
 
 4. Data Storing
-   Use arrays, strings and structures to store datas for next time used
+- Use arrays, strings and structures to store datas for next time used
    - e.g. Creature -- Array[8] = {graphstring,name,pp,level,magics1,magics2,magics3,magic4}
