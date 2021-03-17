@@ -85,4 +85,5 @@
 
 
 4. Data Storing
-- Use arrays, strings and structures to store datas for next time used
+- Use arrays, strings and structures to store datas for next time used.
+- An archive system through file-io.
