@@ -1,4 +1,4 @@
-#include<string>
+#include <string>
 using namespace std;
 
 #ifndef DATA_H
