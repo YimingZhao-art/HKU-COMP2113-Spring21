@@ -37,7 +37,7 @@ struct USER //Store the inf of user.
     string name; // user name to save
     int money; //The money of user.
     bool status[4]; //True for captured a pokemon, false for not.
-    int train; //The number of train can be add to a pokemon to train it.
+    int train = 0; //The number of train can be add to a pokemon to train it.
 };
 
 
