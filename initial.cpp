@@ -62,9 +62,9 @@ void initialpokemon(POKEMON pokemons[]) //Initial the data of Pokemons.
 {   
     //Initial the name of pokemons.
     pokemons[0].name = "Flame Orangutan";
-    pokemons[0].name = "Ruth Wong";
-    pokemons[0].name = "Mona Boob";
-    pokemons[0].name = "PDD";
+    pokemons[1].name = "Ruth Wong";
+    pokemons[2].name = "Mona Boob";
+    pokemons[3].name = "PDD";
 
     //Initial the level, hp and magics and experience of pokemons.
     for(int i=0; i<4; i++)
