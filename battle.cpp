@@ -1,4 +1,4 @@
-//This file is used to be the battle game
+//This file is used to be the main file of the game
 //Following are libraries we need to use.
 #include<iostream>
 #include<fstream>
