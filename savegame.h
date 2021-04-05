@@ -6,6 +6,6 @@ using namespace std;
 #ifndef SAVEGAME_H
 #define SAVEGAME_H
 
-void save(USER user);
+void save(USER &user);
 
 #endif

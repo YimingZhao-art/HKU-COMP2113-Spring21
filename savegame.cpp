@@ -10,21 +10,27 @@
 //Following are libraries defined by us.
 #include "data.h"
 #include "initial.h"
-
 using namespace std;
-
-void save(USER user){
+void save(USER &user)
+{
     string filename = user.name + ".txt";
     
     ofstream file( filename.c_str() );
     
     if ( file.fail() )
+    {
+        cout<<"Save error, please try again.";
         return;
-    file << user.name << ' ' <<  user.money << ' ' << user.train <<' ' << user.number_of_pokeman << endl;
-    
-    for ( int i = 0; i < user.number_of_pokeman; i++ ){
-        file << user.bag[i].name << ' ' << user.bag[i].level << ' ' << user.bag[i].hp << ' ' << user.bag[i].hpmax << ' ' << user.bag[i].magics << ' ' << user.bag[i].experience << ' ' << user.bag[i].character << endl;
     }
-    
+        
+    file << user.name << ' ' <<  user.money << ' ' << user.train <<' ' << user.number_of_pokeman << endl;
+    file << user.capturestatus[0] <<" "<< user.capturestatus[1] <<" "<< user.capturestatus[2] <<" "<< user.capturestatus[3] <<endl;
+    file << user.bossstatuse[0] <<" "<< user.bossstatuse[1] <<" "<< user.bossstatuse[2] <<" "<< user.bossstatuse[3] <<endl;
+    for ( int i = 0; i < user.number_of_pokeman; i++ )
+    {
+        file << user.bag[i].name << ' ' << user.bag[i].level << ' ' << user.bag[i].hp << ' ' << user.bag[i].hpmax << ' ' << user.bag[i].experience << ' ' << user.bag[i].character << endl;
+    }
+
     file.close();
+    return;
 }

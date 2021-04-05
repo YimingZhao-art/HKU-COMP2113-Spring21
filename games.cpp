@@ -1,6 +1,12 @@
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
+#include<iostream>
+#include<fstream>
+#include<cstdlib>
+#include<cstdio>
+#include<ctime>
+#include<string>
+#include<cctype>
+#include<iomanip>
+#include<vector>
 using namespace std;
 
 

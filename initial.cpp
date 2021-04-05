@@ -7,19 +7,18 @@
 #include<ctime>
 #include<string>
 #include<cctype>
+#include<iomanip>
+#include<vector>
 //Following are libraries defined by us.
 #include "data.h"
 #include "initial.h"
 
 using namespace std;
 
-void initialmagics(MAGICS magics[]) //Initial the magics of the game.
+void initialmagics() //Initial the magics of the game.
 {
     for(int i=0; i<10; i++)
-    {
-        magics[i].num = i; //Initial the number of magics.
         magics[i].damage = 6 * (i + 1);  //Initial the damage of magics.
-    }
 
     //Initial the name of the magics.
     magics[0].name = "Flap";
@@ -36,7 +35,7 @@ void initialmagics(MAGICS magics[]) //Initial the magics of the game.
     return;
 }
 
-void initialboss(BOSS boss[]) //Initial the data of boss.
+void initialboss() //Initial the data of boss.
 {
     //Initial the name of boss
     boss[0].name = "Fire Cloud Cthulhu";
@@ -46,7 +45,7 @@ void initialboss(BOSS boss[]) //Initial the data of boss.
 
     //Initial the current hp of boss
     for(int i=0; i<4; i++)
-        boss[i].hp = 400;
+        boss[i].hp = 800;
     
     //Initial the charateristic of boss
     boss[0].character = "fire";
@@ -58,7 +57,7 @@ void initialboss(BOSS boss[]) //Initial the data of boss.
 }
 
 
-void initialpokemon(POKEMON pokemons[]) //Initial the data of Pokemons.
+void initialpokemon() //Initial the data of Pokemons.
 {   
     //Initial the name of pokemons.
     pokemons[0].name = "Flame Orangutan";
@@ -72,7 +71,6 @@ void initialpokemon(POKEMON pokemons[]) //Initial the data of Pokemons.
         pokemons[i].level = 1;
         pokemons[i].hp = 24;
         pokemons[i].hpmax = 24;
-        pokemons[i].magics = "0nnn";
         pokemons[i].experience = 0;
     }
 

@@ -7,26 +7,24 @@
 #include<ctime>
 #include<string>
 #include<cctype>
-#include <iomanip>
+#include<iomanip>
+#include<vector>
 //Following are libraries defined by us.
 #include "data.h"
 #include "initial.h"
 #include "savegame.h"
 #include "readgame.h"
 #include "game.h"
+#include "battle.h"
 
 
 using namespace std;
 
-MAGICS magics[10];
-BOSS boss[4];
-POKEMON pokemons[4];
 USER user;
-
 
 void display1() {
     cout << "------------------------------------------\n" <<
-            "Choose one of the modes: \n" <<
+            "Choose one of the modes(Please input the name of the mode): \n" <<
             "loadgame\n" <<
             "newgame\n" <<
             "exit\n" <<
@@ -35,7 +33,7 @@ void display1() {
 
 void display() {
     cout << "------------------------------------------\n" <<
-            "Choose one of the commands: \n" <<
+            "Choose one of the commands(Please input the name of the mode): \n" <<
             "Battle\n" <<
             "Bag\n" <<
             "Games\n" <<
@@ -50,7 +48,7 @@ void display_game(){
             "Exit\n";
 }
 
-void game(USER user){
+void game(USER &user){
     string command;
     display_game();
     cin >> command;
@@ -79,7 +77,7 @@ void game(USER user){
     }
 }
 
-void display_bag(USER user) {
+void display_bag(USER &user) {
     cout << setw(9) << setfill(' ') << "User: " << user.name << endl;
     cout << setw(9) << setfill(' ') << "Money: " << user.money << endl;
     cout << setw(9) << setfill(' ') << "Train: " << user.train << endl;
@@ -92,7 +90,7 @@ void display_bag(USER user) {
     }
 }
 
-void Bag(USER user){
+void Bag(USER &user){
     display_bag(user);
     string command;
     cin >> command;
@@ -122,9 +120,9 @@ void Bag(USER user){
 
 int main()
 {
-    initialmagics(magics); //Initialize the data of magics.
-    initialboss(boss); //Initial the data of boss.
-    initialpokemon(pokemons); //Initial the data of Pokemons.
+    initialmagics(); //Initialize the data of magics.
+    initialboss(); //Initial the data of boss.
+    initialpokemon(); //Initial the data of Pokemons.
     
     display1(); //When first open the game, display the menu for user to choose: load game/new game/exit.
     while ( 1 ) //Used when first open the program.
@@ -158,11 +156,10 @@ int main()
             cin >> x;
             
             user.number_of_pokeman = 1;
-            user.bag[0] = pokemons[x];
+            user.bag.push_back(pokemons[x]);
+            user.capturestatus[x] = 1;
             break;
         }
-        
-        
         
         
         else if ( get == "exit" ){
@@ -180,14 +177,32 @@ int main()
     cin >> command;
     while ( command != "SaveAndExit" ){
         if ( command == "Battle" ){
-            //insert the battle function here
-            cout << 1;
+            cout<<"Choose battle type(please enter the number of the command):\n"
+                <<"1. Fight creeps\n"
+                <<"2. Fight Boss\n";
+            int type;
+            cin>>type;
+            while(type !=1 && type != 2)
+            {
+                cout<<"Wrong command, try again!\n";
+                cin>>type;
+            }
+            if(type == 1)
+                normalbattle(user);
+            else
+                bossbattle(user);
+            cout << "press \"Enter\" to continue"<<endl;
+            getchar();
         }
         else if ( command == "Bag" ){
             Bag(user);
+            cout << "press \"Enter\" to continue"<<endl;
+            getchar();
         }
         else if ( command == "Games"){
             game(user);
+            cout << "press \"Enter\" to continue"<<endl;
+            getchar();
         }
         display();
         cin >> command;
