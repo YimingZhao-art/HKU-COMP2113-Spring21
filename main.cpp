@@ -16,6 +16,7 @@ using namespace std;
 MAGICS magics[10];
 BOSS boss[4];
 POKEMON pokemons[4];
+USER user;
 
 int main()
 {
