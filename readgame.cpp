@@ -1,4 +1,4 @@
-//This file is used to be the main file of the game
+//This file is used to load game
 //Following are libraries we need to use.
 #include<iostream>
 #include<fstream>
