@@ -21,8 +21,9 @@ void save(USER user){
     if ( file.fail() )
         return;
     file << user.name << ' ' <<  user.money << ' ' << user.train <<' ' << user.number_of_pokeman << endl;
+    
     for ( int i = 0; i < user.number_of_pokeman; i++ ){
-        file << user.bag[i].name << ' ' << user.bag[i].level << ' ' << user.bag[i].magics << ' ' << user.bag[i].experience << endl;
+        file << user.bag[i].name << ' ' << user.bag[i].level << ' ' << user.bag[i].hp << ' ' << user.bag[i].hpmax << ' ' << user.bag[i].magics << ' ' << user.bag[i].experience << ' ' << user.bag[i].character << endl;
     }
     
     file.close();
