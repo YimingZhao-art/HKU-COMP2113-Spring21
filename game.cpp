@@ -29,12 +29,14 @@ bool GUESS() {
 }
 
 void print(char array[][3]){
+	cout << "-----" << endl;
 	for (int i = 0; i < 3; i ++){
 		for (int j =0; j < 3; j++){
 			cout << array[i][j] << ' ';
 		}
 		cout << endl;
 	}
+	cout << "-----" << endl;
 }
 
 bool check(char array[][3], char x) {
@@ -91,6 +93,10 @@ bool Tic_Tac_Toe() {
 		
 		cout << "Choose the row and col you want to: ";
 		cin >> row >> col;
+		while ( array[row][col] != 'N' ){
+			cout << "Choose the row and col you want to: ";
+			cin >> row >> col;
+		}
 		array[row][col] = 'X';
 		print(array);
 		if ( win(array) == 'X' ) return true;
@@ -116,6 +122,3 @@ bool Tic_Tac_Toe() {
 }
 
 
-int main(){
-	Tic_Tac_Toe();
-}
