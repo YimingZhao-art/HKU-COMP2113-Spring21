@@ -7,6 +7,7 @@
 #include<ctime>
 #include<string>
 #include<cctype>
+#include<vector>
 //Following are libraries defined by us.
 #include "data.h"
 #include "initial.h"
