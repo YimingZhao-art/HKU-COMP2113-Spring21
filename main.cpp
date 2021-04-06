@@ -111,7 +111,7 @@ void Bag(USER &user){
         display_bag(user);
         cout << "------------------------------------------\n" <<
         "Choose one of the commands: \n" <<
-        "Recover\n" << 
+        "Recover\n" <<
         "DistributeTrain\n" <<
         "Exit\n";
         cin >> command;
@@ -177,30 +177,30 @@ int main()
     cin >> command;
     while ( command != "SaveAndExit" ){
         if ( command == "Battle" ){
-            cout<<"Choose battle type(please enter the number of the command):\n"
-                <<"1. Fight creeps\n"
-                <<"2. Fight Boss\n";
+            cout<< "Choose battle type(please enter the number of the command):\n"
+                << "1. Fight creeps\n"
+                << "2. Fight Boss\n";
             int type;
-            cin>>type;
-            while(type !=1 && type != 2)
+            cin >> type;
+            while( type !=1 && type != 2 )
             {
                 cout<<"Wrong command, try again!\n";
                 cin>>type;
             }
-            if(type == 1)
-                normalbattle(user);
+            if( type == 1 )
+                normalbattle( user );
             else
-                bossbattle(user);
-            cout << "press \"Enter\" to continue"<<endl;
+                bossbattle( user );
+            cout << "press \"Enter\" to continue" <<endl;
             getchar();
         }
         else if ( command == "Bag" ){
-            Bag(user);
+            Bag( user );
             cout << "press \"Enter\" to continue"<<endl;
             getchar();
         }
-        else if ( command == "Games"){
-            game(user);
+        else if ( command == "Games" ){
+            game( user );
             cout << "press \"Enter\" to continue"<<endl;
             getchar();
         }
