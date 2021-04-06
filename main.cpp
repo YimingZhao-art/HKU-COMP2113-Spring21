@@ -23,16 +23,16 @@ using namespace std;
 USER user;
 
 void display1() {
-    cout << "------------------------------------------\n" <<
+    cout << "-------------------------------------------------------------------\n" <<
             "Choose one of the modes(Please input the name of the mode): \n" <<
             "loadgame\n" <<
             "newgame\n" <<
             "exit\n" <<
-            "------------------------------------------\n";
+            "-------------------------------------------------------------------\n";
 }
 
 void display() {
-    cout << "------------------------------------------\n" <<
+    cout << "-------------------------------------------------------------------\n" <<
             "Choose one of the commands(Please input the name of the mode): \n" <<
             "Battle\n" <<
             "Bag\n" <<
@@ -41,7 +41,7 @@ void display() {
 }
 
 void display_game(){
-    cout << "------------------------------------------\n" <<
+    cout << "-------------------------------------------------------------------\n" <<
             "Choose one of the games: \n" <<
             "Tic_Tac_Toe\n" <<
             "Guess\n" <<
@@ -82,7 +82,7 @@ void display_bag(USER &user) {
     cout << setw(9) << setfill(' ') << "Money: " << user.money << endl;
     cout << setw(9) << setfill(' ') << "Train: " << user.train << endl;
     for ( int i = 0; i < user.number_of_pokeman; i++ ){
-        cout <<"------------------------------------------\n";
+        cout <<"-------------------------------------------------------------------\n";
         cout << "name: "<< setw(20) << setfill(' ') << user.bag[i].name << ":\n";
         cout << "level: " << setw(2) << setfill(' ') << user.bag[i].level << ' ' << "experience: " << setw(2) << setfill(' ') << user.bag[i].experience <<endl;
         cout << "hp: "<< setw(3) << setfill(' ') << user.bag[i].hp << ' ' << "hpmax: "<< setw(3) << setfill(' ') << user.bag[i].hpmax << endl;
@@ -90,11 +90,47 @@ void display_bag(USER &user) {
     }
 }
 
+
+void Level_up(USER &user){
+    cout <<"-------------------------------------------------------------------\n";
+    cout << "Choose the pokemon you want to level-up: (from 0 - " << user.number_of_pokeman-1 << ")\n";
+    int i; //pokemon
+    cin >> i;
+    cout << "Your have " << user.train << " at most, how much do you want to distribute: \n";
+    int j;//distribute quantity
+    cin >> j;
+    int left;//distribute left
+    int to_10 = ( 9 - user.bag[i].level ) * 100 + user.bag[i].experience; //distance from 10
+    if ( j > to_10 ){
+        left = j - to_10;
+        cout << left << " are left." << endl;
+        user.bag[i].level = 10;
+        user.bag[i].experience = 0;
+        user.train = left;
+    }
+    else {
+        if ( j + user.bag[i].experience < 100 ){
+            cout << "Added.\n";
+            user.bag[i].experience += j;
+        }
+        else {
+            int level_up;
+            level_up = ( j + user.bag[i].experience ) / 100;
+            left = ( j + user.bag[i].experience ) % 100;
+            user.bag[i].level += level_up;
+            user.bag[i].experience = left;
+            cout << level_up << " level-up!\n";
+        }
+        user.train -= j;
+    }
+}
+
+
 void Bag(USER &user){
     display_bag(user);
     string command;
     cin >> command;
-    cout << "------------------------------------------\n" <<
+    cout << "-------------------------------------------------------------------\n" <<
             "Choose one of the commands: \n" <<
             "Recover\n" << 
             "DistributeTrain\n" <<
@@ -107,9 +143,10 @@ void Bag(USER &user){
         }
         else if ( command != "DistributeTrain" ){
             //insert the level-up
+            Level_up(user);
         }
         display_bag(user);
-        cout << "------------------------------------------\n" <<
+        cout << "-------------------------------------------------------------------\n" <<
         "Choose one of the commands: \n" <<
         "Recover\n" <<
         "DistributeTrain\n" <<
@@ -117,6 +154,16 @@ void Bag(USER &user){
         cin >> command;
     }
 }
+
+
+
+
+
+
+
+
+
+
 
 int main()
 {
@@ -176,7 +223,9 @@ int main()
     display();
     cin >> command;
     while ( command != "SaveAndExit" ){
+        //battle
         if ( command == "Battle" ){
+            cout << "-------------------------------------------------------------------\n";
             cout<< "Choose battle type(please enter the number of the command):\n"
                 << "1. Fight creeps\n"
                 << "2. Fight Boss\n";
@@ -191,19 +240,27 @@ int main()
                 normalbattle( user );
             else
                 bossbattle( user );
-            cout << "press \"Enter\" to continue" <<endl;
+            cout << "press \"Enter\" to continue" << endl;
             getchar();
         }
+        
+        
+        //Bag
         else if ( command == "Bag" ){
             Bag( user );
-            cout << "press \"Enter\" to continue"<<endl;
+            cout << "press \"Enter\" to continue" << endl;
             getchar();
         }
+        
+        
+        //Game
         else if ( command == "Games" ){
             game( user );
-            cout << "press \"Enter\" to continue"<<endl;
+            cout << "press \"Enter\" to continue" << endl;
             getchar();
         }
+        
+        
         display();
         cin >> command;
         if ( command == "SaveAndExit" )
