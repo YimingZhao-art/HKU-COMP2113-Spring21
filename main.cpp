@@ -20,6 +20,10 @@
 
 using namespace std;
 
+MAGICS magics[10];
+BOSS boss[4];
+POKEMON pokemons[4];
+
 USER user;
 
 void display1() {
@@ -129,19 +133,19 @@ void Level_up(USER &user){
 void Bag(USER &user){
     display_bag(user);
     string command;
-    cin >> command;
     cout << "-------------------------------------------------------------------\n" <<
             "Choose one of the commands: \n" <<
             "Recover\n" << 
             "DistributeTrain\n" <<
             "Exit\n";
-    while ( command != "Eixt" ){
+    cin >> command;
+    while ( command != "Exit" ){
         if ( command == "Recover" ){
             user.money -= 5;
             for ( int i = 0; i < user.number_of_pokeman; i++ )
                 user.bag[i].hp = user.bag[i].hpmax;
         }
-        else if ( command != "DistributeTrain" ){
+        else if ( command == "DistributeTrain" ){
             //insert the level-up
             Level_up(user);
         }
@@ -153,6 +157,7 @@ void Bag(USER &user){
         "Exit\n";
         cin >> command;
     }
+    return;
 }
 
 
@@ -167,9 +172,9 @@ void Bag(USER &user){
 
 int main()
 {
-    initialmagics(); //Initialize the data of magics.
-    initialboss(); //Initial the data of boss.
-    initialpokemon(); //Initial the data of Pokemons.
+    initialmagics(magics); //Initialize the data of magics.
+    initialboss(boss); //Initial the data of boss.
+    initialpokemon(pokemons); //Initial the data of Pokemons.
     
     display1(); //When first open the game, display the menu for user to choose: load game/new game/exit.
     while ( 1 ) //Used when first open the program.
@@ -194,7 +199,7 @@ int main()
             cout << "Input your user name: ";
             cin >> user.name;
             user.money = 100;
-            cout << "Choose one of the pokemons(input from 0-3):\n ";
+            cout << "Choose one of the pokemons(input from 0-3):\n";
             for ( int i = 0; i < 4; i++ ){
                 cout << i << ": " << pokemons[i].name <<endl;
             }
@@ -237,9 +242,9 @@ int main()
                 cin>>type;
             }
             if( type == 1 )
-                normalbattle( user );
+                normalbattle( user, pokemons, magics);
             else
-                bossbattle( user );
+                bossbattle( user, boss, magics );
             cout << "press \"Enter\" to continue" << endl;
             getchar();
         }

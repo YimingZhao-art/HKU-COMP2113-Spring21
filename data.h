@@ -45,8 +45,5 @@ struct USER //Store the inf of user.
     int bossstatuse[4] = {0}; //To record whether a boss was beaten.
 };
 
-MAGICS magics[10];
-BOSS boss[4];
-POKEMON pokemons[4];
 
 #endif

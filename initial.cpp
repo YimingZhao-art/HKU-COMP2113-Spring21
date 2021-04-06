@@ -15,7 +15,7 @@
 
 using namespace std;
 
-void initialmagics() //Initial the magics of the game.
+void initialmagics(MAGICS magics[]) //Initial the magics of the game.
 {
     for(int i=0; i<10; i++)
         magics[i].damage = 6 * (i + 1);  //Initial the damage of magics.
@@ -35,7 +35,7 @@ void initialmagics() //Initial the magics of the game.
     return;
 }
 
-void initialboss() //Initial the data of boss.
+void initialboss(BOSS boss[]) //Initial the data of boss.
 {
     //Initial the name of boss
     boss[0].name = "Fire Cloud Cthulhu";
@@ -57,7 +57,7 @@ void initialboss() //Initial the data of boss.
 }
 
 
-void initialpokemon() //Initial the data of Pokemons.
+void initialpokemon(POKEMON pokemons[]) //Initial the data of Pokemons.
 {   
     //Initial the name of pokemons.
     pokemons[0].name = "Flame Orangutan";

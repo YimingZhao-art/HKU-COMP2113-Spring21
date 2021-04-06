@@ -16,8 +16,11 @@
 #include "readgame.h"
 #include "battle.h"
 
+///Give the graph of normal battle and boss battle;
+string bossgraph = "                                    *    (---------)       *\n    *|````|*                     *       | \\|/     |          *\n  *--| ^ ^|--*                           | ^-^     |\n     |- ^-|                          /|\\ |-    -   |  /|\\\n     *----*                      *       |\\ ~ /    |          *\n                                    *    (---------)       *\n";
+string normalgraph = "    *|````|*                            *|````|*\n  *--| ^ ^|--*                        *--|^ ^ |--*\n     |- ^-|                              |-^ -|\n     *````*                              *````*\n";
 
-void showmagic(int x) //show what magics can be used.
+void showmagic(int x, MAGICS magics[]) //show what magics can be used.
 {
     cout<<"please input the magic you want to use(input number)"<<endl;
     switch (x)
@@ -42,7 +45,7 @@ void showmagic(int x) //show what magics can be used.
     return;
 }
 
-int dam(int level, int place, string c1, string c2) //Calculate the damage.
+int dam(int level, int place, string c1, string c2, MAGICS magics[]) //Calculate the damage.
 {
     int damage = magics[level-place].damage;
     srand(time(NULL));
@@ -73,7 +76,7 @@ int dam(int level, int place, string c1, string c2) //Calculate the damage.
 }
 
 
-void normalbattle(USER &user) //For normal battle, can capture pokemons.
+void normalbattle(USER &user, POKEMON pokemons[], MAGICS magics[]) //For normal battle, can capture pokemons.
 {
     int numbers = user.number_of_pokeman;
     vector <int> can; //Record the number of pokemons that can attend the battle.
@@ -83,6 +86,7 @@ void normalbattle(USER &user) //For normal battle, can capture pokemons.
     if (can.size() == 0)
         {
             cout<<"No pokemons can attend the battle, Please recover their health.\n";
+            cout << "-------------------------------------------------------------------\n";
             return;
         }
     
@@ -92,7 +96,7 @@ void normalbattle(USER &user) //For normal battle, can capture pokemons.
     cout<<"choose a pokemon to attend the battle:\n";
     cout<<"input a integer which >= 0 and <= "<<can.size()-1<<endl;
     cin>>place;
-    while(place>=can.size() && place <0)
+    while(place>=can.size() || place <0)
     {
         cout<<"Do not exist, try again.\n";
         cin>>place;
@@ -100,7 +104,7 @@ void normalbattle(USER &user) //For normal battle, can capture pokemons.
     mid = can[0];
     can[0] = can[place];
     can[place] = mid;
-
+    cout << "-------------------------------------------------------------------\n";
     for (int i=0; i<4; i++)
     {
         pokemons[i].level = user.bag[can[0]].level;
@@ -115,27 +119,33 @@ void normalbattle(USER &user) //For normal battle, can capture pokemons.
     int chosen;
     cin>>chosen;
     
-    while(chosen>3 && chosen <0)
+    while(chosen>3 || chosen <0)
     {
         cout<<"Do not exist, try again.\n";
         cin>>chosen;
     }
-
+    cout << "-------------------------------------------------------------------\n";
     cout<<normalgraph;
     cout<< user.bag[can[0]].name<<" VS "<<pokemons[chosen].name<<endl
         <<  user.bag[can[0]].hp<<"/"<<user.bag[can[0]].hpmax<<"        "
         <<  pokemons[chosen].hp<<"/"<<pokemons[chosen].hpmax<<endl
-        <<  "1.fight    2.capture  3.flee\n"
+        <<  "1.fight\n2.capture\n3.flee\n"
         <<  "input command(number of it):\n";
     int l1, l2=pokemons[chosen].level;
     int command;
     cin>>command;
+    cout << "-------------------------------------------------------------------\n";
     while(command != 3)
     {
         if(command == 1)
         {
+            cout<<normalgraph;
+            cout<< user.bag[can[0]].name<<" VS "<<pokemons[chosen].name<<endl
+            <<  user.bag[can[0]].hp<<"/"<<user.bag[can[0]].hpmax<<"        "
+            <<  pokemons[chosen].hp<<"/"<<pokemons[chosen].hpmax<<endl;
+            
             l1=user.bag[can[0]].level;
-            showmagic(user.bag[can[0]].level);
+            showmagic(user.bag[can[0]].level, magics);
             int cmagic1,cmagic2;
             cin>>cmagic1;
             if(pokemons[chosen].level < 3)
@@ -145,10 +155,12 @@ void normalbattle(USER &user) //For normal battle, can capture pokemons.
                     srand(time(NULL));
                     cmagic2 = (rand() % 4) + 1;
                 }
-            user.bag[can[0]].hp -= dam(l2,cmagic2,pokemons[chosen].character,user.bag[can[0]].character);
-            pokemons[chosen].hp -= dam(l1,cmagic1,user.bag[can[0]].character,pokemons[chosen].character);
-            cout<<user.bag[can[0]].name<<" use "<< magics[l1-cmagic1].name<<endl;
-            cout<<pokemons[chosen].name<<" use "<< magics[l2-cmagic2].name<<endl;
+            int d1 = dam(l1,cmagic1,user.bag[can[0]].character,pokemons[chosen].character,magics);
+            int d2 = dam(l2,cmagic2,pokemons[chosen].character,user.bag[can[0]].character,magics);
+            user.bag[can[0]].hp -= d2;
+            pokemons[chosen].hp -= d1;
+            cout<<user.bag[can[0]].name<<" use "<< magics[l1-cmagic1].name<<" cause "<<d1<<" damage"<<endl;
+            cout<<pokemons[chosen].name<<" use "<< magics[l2-cmagic2].name<<" cause "<<d2<<" damage"<<endl;
             if(user.bag[can[0]].hp < 0)
                 user.bag[can[0]].hp=0;
             if(pokemons[chosen].hp < 0)
@@ -208,7 +220,7 @@ void normalbattle(USER &user) //For normal battle, can capture pokemons.
             cout<<"choose a pokemon to attend the battle:\n";
             cout<<"input a integer which >= 0 and <= "<<can.size()-1<<endl;
             cin>>place;
-            while(place>=can.size() && place <0)
+            while(place>=can.size() || place <0)
             {
                 cout<<"Do not exist, try again.\n";
                 cin>>place;
@@ -219,21 +231,22 @@ void normalbattle(USER &user) //For normal battle, can capture pokemons.
             cout<<user.bag[can[0]].name<<" now attend the battle"<<endl;
         }
 
-        cout<<normalgraph;
-        cout<< user.bag[can[0]].name<<" VS "<<pokemons[chosen].name<<endl
-            <<  user.bag[can[0]].hp<<"/"<<user.bag[can[0]].hpmax<<"        "
-            <<  pokemons[chosen].hp<<"/"<<pokemons[chosen].hpmax<<endl
-            <<  "1.fight    2.capture  3.flee\n"
+        cout << "-------------------------------------------------------------------\n";
+        cout<<  "1.fight\n2.capture\n3.flee\n"
             <<  "input command(number of it):\n";
 
         cin>>command;
+        cout << "-------------------------------------------------------------------\n";
     }
     
     return;
 }
 
 
-void bossbattle(USER &user) //Fight the boss.
+
+
+
+void bossbattle(USER &user, BOSS boss[], MAGICS magics[]) //Fight the boss.
 {
     int numbers = user.number_of_pokeman;
     vector <int> can; //Record the number of pokemons that can attend the battle.
@@ -243,6 +256,7 @@ void bossbattle(USER &user) //Fight the boss.
     if (can.size() == 0)
         {
             cout<<"No pokemons can attend the battle, Please recover their health.\n";
+            cout << "-------------------------------------------------------------------\n";
             return;
         }
     int mid;
@@ -251,7 +265,7 @@ void bossbattle(USER &user) //Fight the boss.
     cout<<"choose a pokemon to attend the battle:\n";
     cout<<"input a integer which >= 0 and <= "<<can.size()-1<<endl;
     cin>>place;
-    while(place>=can.size() && place <0)
+    while(place>=can.size() || place <0)
     {
         cout<<"Do not exist, try again.\n";
         cin>>place;
@@ -259,7 +273,7 @@ void bossbattle(USER &user) //Fight the boss.
     mid = can[0];
     can[0] = can[place];
     can[place] = mid;
-
+    cout << "-------------------------------------------------------------------\n";
 
     for (int i=0; i<4; i++)
         boss[i].hp = boss[i].hpmax;
@@ -271,36 +285,43 @@ void bossbattle(USER &user) //Fight the boss.
     int chosen;
     cin>>chosen;
     
-    while(chosen>3 && chosen <0)
+    while(chosen>3 || chosen <0)
     {
         cout<<"Do not exist, try again.\n";
         cin>>chosen;
     }
-        
+    cout << "-------------------------------------------------------------------\n";   
 
     cout<<bossgraph;
     cout<< user.bag[can[0]].name<<" VS "<<boss[chosen].name<<endl
         <<  user.bag[can[0]].hp<<"/"<<user.bag[can[0]].hpmax<<"        "
         <<  boss[chosen].hp<<"/"<<boss[chosen].hpmax<<endl
-        <<  "1.fight    2.flee\n"
+        <<  "1.fight\n2.flee\n"
         <<  "input command(number of it):\n";
     int l1, l2=boss[chosen].level;
     int command;
     cin>>command;
+    cout << "-------------------------------------------------------------------\n";
     while(command != 2)
     {
         if(command == 1)
         {
+            cout<<bossgraph;
+            cout<< user.bag[can[0]].name<<" VS "<<boss[chosen].name<<endl
+                <<  user.bag[can[0]].hp<<"/"<<user.bag[can[0]].hpmax<<"         "
+                <<  boss[chosen].hp<<"/"<<boss[chosen].hpmax<<endl;
             l1=user.bag[can[0]].level;
-            showmagic(user.bag[can[0]].level);
+            showmagic(user.bag[can[0]].level,magics);
             int cmagic1,cmagic2;
             cin>>cmagic1;
             srand(time(NULL));
             cmagic2 = (rand() % 4) + 1;
-            user.bag[can[0]].hp -= dam(l2,cmagic2,boss[chosen].character,user.bag[can[0]].character) * 1.1 ; //Boss will cause extra damage
-            boss[chosen].hp -= dam(l1,cmagic1,user.bag[can[0]].character,boss[chosen].character);
-            cout<<user.bag[can[0]].name<<" use "<< magics[l1-cmagic1].name<<endl;
-            cout<<boss[chosen].name<<" use "<< magics[l2-cmagic2].name<<endl;
+            int d1 = dam(l1,cmagic1,user.bag[can[0]].character,boss[chosen].character,magics);
+            int d2 = dam(l2,cmagic2,boss[chosen].character,user.bag[can[0]].character,magics) * 1.1 ; //Boss will cause extra damage
+            user.bag[can[0]].hp -= d2;
+            boss[chosen].hp -= d1;
+            cout<<user.bag[can[0]].name<<" use "<< magics[l1-cmagic1].name<<" cause "<<d1<<" damage"<<endl;
+            cout<<boss[chosen].name<<" use "<< magics[l2-cmagic2].name<<" cause "<<d2<<" damage"<<endl;
             if(user.bag[can[0]].hp < 0)
                 user.bag[can[0]].hp=0;
             if(boss[chosen].hp < 0)
@@ -339,7 +360,7 @@ void bossbattle(USER &user) //Fight the boss.
             cout<<"choose a pokemon to attend the battle:\n";
             cout<<"input a integer which >= 0 and <= "<<can.size()-1<<endl;
             cin>>place;
-            while(place>=can.size() && place <0)
+            while(place>=can.size() || place <0)
             {
                 cout<<"Do not exist, try again.\n";
                 cin>>place;
@@ -350,14 +371,12 @@ void bossbattle(USER &user) //Fight the boss.
             cout<<user.bag[can[0]].name<<" now attend the battle"<<endl;
         }
 
-        cout<<bossgraph;
-        cout<< user.bag[can[0]].name<<" VS "<<boss[chosen].name<<endl
-            <<  user.bag[can[0]].hp<<"/"<<user.bag[can[0]].hpmax<<"         "
-            <<  boss[chosen].hp<<"/"<<boss[chosen].hpmax<<endl
-            <<  "1.fight    2.flee\n"
+        cout << "-------------------------------------------------------------------\n";
+        cout<<  "1.fight\n2.flee\n"
             <<  "input command(number of it):\n";
 
         cin>>command;
+        cout << "-------------------------------------------------------------------\n";
     }
     
     return;
