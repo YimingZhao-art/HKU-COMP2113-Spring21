@@ -15,6 +15,7 @@
 
 using namespace std;
 
+//read a USER user, then input the information from username.txt into the struct
 void read(USER &user)
 {
     string filename = user.name + ".txt";
