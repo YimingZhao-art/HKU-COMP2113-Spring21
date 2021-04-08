@@ -26,10 +26,11 @@
      - level up when experience is 100, the highest level is 10
    - Battle
      - Water damages twice to fire, fire damages twice to wood, wood damages twice to water, normal performs consistently
-     - Magics with different power (some random number within a range given by level)
+     - Magics with different power (The exact damage will be randomly chosen)
      - Damage cause hp decrease, when hp is 0, it cannot fight and lose
      - When wild creatures' hp is lower than 25% of hpmax, we can `capture` successfully
-     - Defeat the `Boss` and win the game
+     - Defeat the `Boss` and win.
+     - Choose to flee if you can't beat the enemies.
 	 - Bosses cannot be ‘capture’
    - Games
      - Earning gold and train
