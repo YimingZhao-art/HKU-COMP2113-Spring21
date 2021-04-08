@@ -1,22 +1,27 @@
-#include<iostream>
-#include<fstream>
-#include<cstdlib>
-#include<cstdio>
-#include<ctime>
-#include<string>
-#include<cctype>
-#include<iomanip>
-#include<vector>
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <cstdio>
+#include <ctime>
+#include <string>
+#include <cctype>
+#include <iomanip>
+#include <vector>
+
+
+
 using namespace std;
 
 
 bool GUESS() {
-	srand(time(NULL));
+	cout << "-------------------------------------------------------------------\n";
+	cout << "This is a game to guess a number from 0-9. You will win 10 golds.\n";
+	srand( time( NULL ) );
 	int x = rand() % 10;
 	int temps = 4;
 	int guess;
 	while ( temps > 0){
-		cout << "Guess a number from 0-9:\n";
+		cout << "Guess a number from 0-9: \n";
 		cout << "Your have " << temps << " attempts left." << endl;
 		cin >> guess;
 		if ( guess == x )
@@ -80,6 +85,9 @@ char win(char array[][3]){
 }
 
 bool Tic_Tac_Toe() {
+	cout << "-------------------------------------------------------------------\n";
+	cout << "This is a tic-tac-toe game. You will win 10 golds.\n";
+	cout << "You can only put you X on the N.\n";
 	char array[3][3];
 	for (int i = 0; i < 3; i ++)
 		for (int j =0; j < 3; j++){
@@ -93,20 +101,21 @@ bool Tic_Tac_Toe() {
 		
 		cout << "Choose the row and col you want to: ";
 		cin >> row >> col;
+		
 		while ( array[row][col] != 'N' ){
 			cout << "Choose the row and col you want to: ";
 			cin >> row >> col;
 		}
 		array[row][col] = 'X';
 		print(array);
-		if ( win(array) == 'X' ) return true;
+		if ( win(array) == 'X' ) 
+			return true;
 		
-		
-		srand(time(NULL));
-		row = rand()%3, col = rand()%3;
+		srand( time( NULL ) );
+		row = rand() % 3, col = rand() % 3;
 		while ( array[row][col] != 'N' ){
-			srand(time(NULL));
-			row = rand()%3, col = rand()%3;
+			srand( time( NULL ) );
+			row = rand() % 3, col = rand() % 3;
 		}
 		array[row][col] = 'O';
 		print(array);
