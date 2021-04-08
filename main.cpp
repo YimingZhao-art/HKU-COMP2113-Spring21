@@ -69,9 +69,9 @@ void game(USER &user){
         //Tic_tac-toe
         if ( command == 1 ){
             if ( Tic_Tac_Toe() ){
-                cout << "Your win 10 golds and 50 train.\n";
+                cout << "Your win 10 golds and 5 train.\n";
                 user.money += 10;
-                user.train += 50;
+                user.train += 5;
             }
             else
                 cout << "Your don't win.\n";
@@ -80,9 +80,9 @@ void game(USER &user){
         //Guess
         else if ( command == 2 ){
             if ( GUESS() ){
-                cout << "Your win 10 golds and 50 train.\n";
+                cout << "Your win 10 golds and 5 train.\n";
                 user.money += 10;
-                user.train += 50;
+                user.train += 5;
             }
             else
                 cout << "Your don't win.\n";

@@ -103,11 +103,11 @@ bool Tic_Tac_Toe() {
 	int row, col;
 	while ( win(array) == 'N' ){
 		
-		cout << "Choose the row and col you want to: ";
+		cout << "Choose the row and col you want to(example: 2 1 means row 3 colume 2): ";
 		cin >> row >> col;
 		
 		while ( array[row][col] != 'N' ){
-			cout << "Choose the row and col you want to: ";
+			cout << "Choose the row and col you want to(example: 2 1 means row 3 colume 2): ";
 			cin >> row >> col;
 		}
 		array[row][col] = 'X';
@@ -133,5 +133,3 @@ bool Tic_Tac_Toe() {
 	
 	return false;
 }
-
-

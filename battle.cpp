@@ -154,8 +154,16 @@ void normalbattle( USER &user, POKEMON pokemons[], MAGICS magics[] ) //For norma
             showmagic( user.bag[can[0]].level, magics );
             int cmagic1,cmagic2;
             cin >> cmagic1;
+            while(cmagic1 > user.bag[can[0]].level || cmagic1 > 4)
+            {
+                cout<<"Magic do not exist, try again.\n";
+                cin>>cmagic1;
+            }
             if( pokemons[chosen].level < 3 )
-                cmagic2 = 1;
+            {
+                cmagic2 = ( rand() % pokemons[chosen].level ) + 1;
+            }
+                
             else
                 {
                     srand( time(NULL) );
@@ -192,8 +200,8 @@ void normalbattle( USER &user, POKEMON pokemons[], MAGICS magics[] ) //For norma
                 cout << "Captured!!!" << endl;
                 user.capturestatus[chosen] = 1;
                 user.number_of_pokeman++;
-                user.train += 3;
-                cout << "Experience + 3" << endl;
+                user.train += 5;
+                cout << "Experience + 5" << endl;
                 return;
             }
         }
@@ -219,8 +227,8 @@ void normalbattle( USER &user, POKEMON pokemons[], MAGICS magics[] ) //For norma
             if ( can.size() == 0 )
             {
                 cout << "No more pokemon can fight, you lose." << endl;
-                user.train += 1;
-                cout<<"Experience + 1" << endl;
+                user.train += 3;
+                cout<<"Experience + 3" << endl;
                 return;
             }
             cout << "choose a pokemon to attend the battle:\n";
@@ -321,6 +329,11 @@ void bossbattle( USER &user, BOSS boss[], MAGICS magics[] ) //Fight the boss.
             showmagic( user.bag[can[0]].level, magics );
             int cmagic1, cmagic2;
             cin >> cmagic1;
+            while(cmagic1 > user.bag[can[0]].level || cmagic1 > 4)
+            {
+                cout<<"Magic do not exist, try again.\n";
+                cin>>cmagic1;
+            }
             srand( time(NULL) );
             cmagic2 = ( rand() % 4 ) + 1;
             int d1 = dam( l1, cmagic1, user.bag[can[0]].character, boss[chosen].character, magics );
@@ -347,9 +360,9 @@ void bossbattle( USER &user, BOSS boss[], MAGICS magics[] ) //Fight the boss.
         if( boss[chosen].hp == 0 ) //Win.
         {
             cout << "You win the battle!!!";
-            user.train += 20;
+            user.train += 25;
             user.bossstatuse[chosen]++;
-            cout << "Train + 20" << endl;
+            cout << "Train + 25" << endl;
             return;
         }
 
