@@ -16,47 +16,48 @@
 
    - User
      - choose a creature
-     - have `x` gold at first
+     - have `100` gold at first
+     - 0 train to get pokemon level-up
    - Creature
-     - Four atrributes `fire`, `water`, `wood`, `neutral`
-     - Water damages twice to fire, fire damages twice to wood, wood damages twice to water, neutral performs consistently
+     - Four atrributes `fire`, `water`, `wood`, `normal`
      - Maximum `level`
-     - Certain `PP`
-     - Learn more powerful magic and PP increase with level increasing
+     - Certain `hp`
+     - Learn more powerful magic and hp increase with level increasing
+     - level up when experience is 100, the highest level is 10
    - Battle
-     - Water damages twice to fire, fire damages twice to wood, wood damages twice to water
-     - Magics with different power
-     - Damage cause PP decrease, when PP is 0, it cannot fight and lose
-     - When wild creatures' PP is lower than 2, we can `capture` successfully
+     - Water damages twice to fire, fire damages twice to wood, wood damages twice to water, normal performs consistently
+     - Magics with different power (some random number within a range given by level)
+     - Damage cause hp decrease, when hp is 0, it cannot fight and lose
+     - When wild creatures' hp is lower than 25% of hpmax, we can `capture` successfully
      - Defeat the `Boss` and win the game
 	 - Bosses cannot be ‘capture’
    - Games
-     - Earning gold and get creature level up
+     - Earning gold and train
    - Bags
      - Recover creatures using gold
      - Learn about information about creatures
-     - Own 3 creatures at most
+     - Own 4 creatures at most
+     - Distribute train to make pokemon level-up
 
 2. Features
-
-- a. Wizard management system (using arrays and strings to store current status information)
-   - Show the information of every creature
-       - `Level`, `PP`, `magics`
-       - graph
-   - Show the status of gold
-- b. Randomized battle system (randomization of damage and opponents encountered) (The information of each battle is generated at the beginning of the battle and disappears after the end)
-   - Showing information of `PP`, `name`, `graph`
-      - Showing magic power
-   - Choosing to use magic or capture or run
-   - Random damage cause by magics
-- c. Boss battle (the information of each battle is generated at the beginning of the battle and disappears after the end)
-- d. Mini game (content will come from different cpp and h files) (the information of each game is generated at the beginning of the game and disappears after the end)
-   - Tic-Tac-Toe & ??
-   - Earning 5 gold when winning and get level up
-- e. Menu interface (different functions will come from different cpp, h files)
-- f. Archive system (based on file io)	
-   - Choose start new game or load game at beginning
-   - Save data before end game
+  - Savegame and Readgame by File I/O and Struct:
+    - Player can store the information of his account status in a [username].txt.
+    - Player can reopen a game by enter the right username saved. The program will read the [username].txt.
+  
+  - Battle and Capture by vector and rand():
+    - Player use his pokemons to compete with wild animals or bosses.
+    - Player can capture animals to enlarge his bag.
+    - Damage of magics is a random with given algorithm.
+  
+  - Doing small game to earn train and money by use `.h` `.cpp` and rand():
+    - 	Try tic-tac-toe
+    - 	Try guess a random numebr
+    - 	Earn 10 golds and 50 train if win.
+  
+  - Bag interface by vector etc. :
+    - Show the information of pokemons
+    - Distribute train to level-up pokemons 		
+    - Recover pokemons to hpmax
 	
 
  3. Code flow
@@ -69,6 +70,7 @@
       - Check bags
         - Print information
         - Recover using gold
+        - Distribute train
         - Close
       - Battle
         - Choose opponents to battle
@@ -84,6 +86,39 @@
         - Get gold / level  
 
 
-4. Data Storing
-- Use arrays, strings and structures to store datas for next time used.
-- An archive system through file-io.
+4. Data Structure
+   - User
+     - name
+     - money
+     - number of pokemon
+     - train
+     - pokemon
+       - name
+       - level
+       - hp
+       - hpmax
+       - experience
+       - character
+       - magic
+         - name
+	 - num
+	 - damage
+
+5. File include
+ - `*.cpp`
+   - `main.cpp run` the flow
+   - `game.cpp` implement small game
+   - `readgame.cpp` read file to get information
+   - `savegame.cpp` save information to file
+   - `battle.cpp` battle function
+   - `initial.cpp` initial the data
+ - `header` i.e. `*.h`
+   - `game.h` store the declaration of game 	
+   - `savegame.h` store the declaration of savegame 
+   - `readgame.h`store the declaration of readgame 
+   - `battle.h` store the declaration of battle
+   - `data.h` store the struct of user, pokemon, etc
+   - `initial.h`
+ - `Makefile`
+   - for compile the code
+   - delete the `*.cpp` and `*.o` and `*.h` after compile 
