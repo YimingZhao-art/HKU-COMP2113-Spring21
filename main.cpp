@@ -55,6 +55,7 @@ void display_game(){
 }
 
 //game implementation
+//read a USER, and do change on it
 void game(USER &user){
     string command;
     display_game();
