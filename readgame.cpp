@@ -15,13 +15,15 @@
 
 using namespace std;
 
-//read a USER user, then input the information from username.txt into the struct
-void read(USER &user)
+//read a USER user, then input the information from username.txt into the struct. return 0 if no file
+int read(USER &user)
 {
     string filename = user.name + ".txt";
     ifstream file(filename.c_str());
-    if ( file.fail() )
+    if ( file.fail() ){
         cout << "No such file!" << endl;
+        return 0;
+    }
     
     
     file >> user.name >> user.money >> user.train >> user.number_of_pokeman;
@@ -36,5 +38,5 @@ void read(USER &user)
     }
     
     file.close();
-    return;
+    return 1;
 }

@@ -99,6 +99,7 @@ void game(USER &user){
 //pokemon_hp,hpmax
 //pokemon_character
 void display_bag(USER &user) {
+    cout <<"-------------------------------------------------------------------\n";
     cout << setw(9) << setfill(' ') << "User: " << user.name << endl;
     cout << setw(9) << setfill(' ') << "Money: " << user.money << endl;
     cout << setw(9) << setfill(' ') << "Train: " << user.train << endl;
@@ -219,6 +220,7 @@ int main()
     while ( 1 ) //Used when first open the program.
     {
         string get;
+        cout << "-------------------------------------------------------------------\n";
         cout << "Instruction:" <<endl;
         cin >> get; //Get the instruction from the user.
         
@@ -227,8 +229,8 @@ int main()
         {
             cout << "Input your user name: ";
             cin >> user.name;
-            read(user); //Call the function to load the game.
-            break;
+            if ( read(user) != 0 ) 
+                break; //Call the function to load the game.
         }
         
         

@@ -6,6 +6,6 @@ using namespace std;
 #ifndef READGAME_H
 #define READGAME_H
 
-void read(USER &user);
+int read(USER &user);
 
 #endif
