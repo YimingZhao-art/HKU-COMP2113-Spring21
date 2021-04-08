@@ -171,6 +171,9 @@ void Level_up(USER &user){
         }
         user.train -= j;
     }
+    
+    user.bag[i].hp = user.bag[i].level * 24;
+    user.bag[i].hpmax = user.bag[i].level * 24;
 }
 
 
