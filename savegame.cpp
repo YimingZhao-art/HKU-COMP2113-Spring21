@@ -1,18 +1,18 @@
 //This file is used to save the game
 //Following are libraries we need to use.
-#include<iostream>
-#include<fstream>
-#include<cstdlib>
-#include<cstdio>
-#include<ctime>
-#include<string>
-#include<cctype>
-#include<vector>
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <cstdio>
+#include <ctime>
+#include <string>
+#include <cctype>
+#include <vector>
 //Following are libraries defined by us.
 #include "data.h"
 #include "initial.h"
 using namespace std;
-void save(USER &user)
+void save( USER &user )
 {
     string filename = user.name + ".txt";
     
@@ -20,10 +20,16 @@ void save(USER &user)
     
     if ( file.fail() )
     {
-        cout<<"Save error, please try again.";
+        cout<<"Save error, please try again.\n";
         return;
     }
-        
+    /*save a txt as:
+    user_name user_money user_number_of_pokeman
+    user.capture_status
+    user.bossstatus
+    user_pokemon:
+    name level hp hpmax experience character
+    */
     file << user.name << ' ' <<  user.money << ' ' << user.train <<' ' << user.number_of_pokeman << endl;
     file << user.capturestatus[0] <<" "<< user.capturestatus[1] <<" "<< user.capturestatus[2] <<" "<< user.capturestatus[3] <<endl;
     file << user.bossstatuse[0] <<" "<< user.bossstatuse[1] <<" "<< user.bossstatuse[2] <<" "<< user.bossstatuse[3] <<endl;
