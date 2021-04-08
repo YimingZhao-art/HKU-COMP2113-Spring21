@@ -215,7 +215,7 @@ int main()
     initialmagics(magics); //Initialize the data of magics.
     initialboss(boss); //Initial the data of boss.
     initialpokemon(pokemons); //Initial the data of Pokemons.
-    
+    cout << "--------------------------POKEMON------------------------------\n";
     display1(); //When first open the game, display the menu for user to choose: load game/new game/exit.
     while ( 1 ) //Used when first open the program.
     {
