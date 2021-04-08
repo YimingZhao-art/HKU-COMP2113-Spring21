@@ -24,6 +24,7 @@ bool GUESS() {
 		cout << "Guess a number from 0-9: \n";
 		cout << "Your have " << temps << " attempts left." << endl;
 		cin >> guess;
+		temps --;
 		if ( guess == x )
 			{
 				cout << "Nice!" << endl;
