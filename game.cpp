@@ -12,7 +12,7 @@
 
 using namespace std;
 
-
+//read nothing, return true if won
 bool GUESS() {
 	cout << "-------------------------------------------------------------------\n";
 	cout << "This is a game to guess a number from 0-9. You will win 10 golds and 50 train.\n";
@@ -33,6 +33,7 @@ bool GUESS() {
 	return false;
 }
 
+//read a board and print the board
 void print(char array[][3]){
 	cout << "-----" << endl;
 	for (int i = 0; i < 3; i ++){
@@ -44,6 +45,7 @@ void print(char array[][3]){
 	cout << "-----" << endl;
 }
 
+//read a board and user, return whether the user win
 bool check(char array[][3], char x) {
 	//search col
 	for ( int i = 0; i < 3; i++ ){
@@ -66,7 +68,7 @@ bool check(char array[][3], char x) {
 	return false;
 }
 
-
+//read a board, check whether the game is over. 'X' the player win, 'O' the computer, 'P' means nobody win
 char win(char array[][3]){
 	if ( check(array,'X') )
 		return 'X';
@@ -84,6 +86,7 @@ char win(char array[][3]){
 	return 'N';
 }
 
+//read nothing, return wether win
 bool Tic_Tac_Toe() {
 	cout << "-------------------------------------------------------------------\n";
 	cout << "This is a tic-tac-toe game. You will win 10 golds and 50 train.\n";
