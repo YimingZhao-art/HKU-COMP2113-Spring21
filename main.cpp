@@ -1,14 +1,14 @@
 //This file is used to be the main file of the game
 //Following are libraries we need to use.
-#include<iostream>
-#include<fstream>
-#include<cstdlib>
-#include<cstdio>
-#include<ctime>
-#include<string>
-#include<cctype>
-#include<iomanip>
-#include<vector>
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <cstdio>
+#include <ctime>
+#include <string>
+#include <cctype>
+#include <iomanip>
+#include <vector>
 //Following are libraries defined by us.
 #include "data.h"
 #include "initial.h"
@@ -26,15 +26,16 @@ POKEMON pokemons[4];
 
 USER user;
 
+///display the mode
 void display1() {
     cout << "-------------------------------------------------------------------\n" <<
             "Choose one of the modes(Please input the name of the mode): \n" <<
             "loadgame\n" <<
             "newgame\n" <<
-            "exit\n" <<
-            "-------------------------------------------------------------------\n";
+            "exit\n" ;
 }
 
+//display the command of mode
 void display() {
     cout << "-------------------------------------------------------------------\n" <<
             "Choose one of the commands(Please input the name of the mode): \n" <<
@@ -44,6 +45,7 @@ void display() {
             "SaveAndExit\n";
 }
 
+//display the choices of game
 void display_game(){
     cout << "-------------------------------------------------------------------\n" <<
             "Choose one of the games: \n" <<
@@ -52,11 +54,13 @@ void display_game(){
             "Exit\n";
 }
 
+//game implementation
 void game(USER &user){
     string command;
     display_game();
     cin >> command;
     while ( command != "Exit" ){
+        //Tic_tac-toe
         if ( command == "Tic_Tac_Toe" ){
             if ( Tic_Tac_Toe() ){
                 cout << "Your win 10 golds.\n";
@@ -65,6 +69,8 @@ void game(USER &user){
             else
                 cout << "Your don't win the golds.\n";
         }
+        
+        //Guess
         else if ( command == "Guess" ){
             if ( GUESS() ){
                 cout << "Your win 10 golds.\n";
@@ -81,6 +87,14 @@ void game(USER &user){
     }
 }
 
+//display the bag information
+//user_name
+//user_money
+//user_train
+//pokemon_name
+//pokemon_level,experience
+//pokemon_hp,hpmax
+//pokemon_character
 void display_bag(USER &user) {
     cout << setw(9) << setfill(' ') << "User: " << user.name << endl;
     cout << setw(9) << setfill(' ') << "Money: " << user.money << endl;
@@ -94,29 +108,50 @@ void display_bag(USER &user) {
     }
 }
 
-
+//distribute the train to pokemon
 void Level_up(USER &user){
     cout <<"-------------------------------------------------------------------\n";
     cout << "Choose the pokemon you want to level-up: (from 0 - " << user.number_of_pokeman-1 << ")\n";
     int i; //pokemon
     cin >> i;
+    
+    //in case of 10 already
+    while ( user.bag[i].level == 10 ){
+        cout << "This pokemon is 10 already!\n";
+        cout << "Choose the pokemon you want to level-up: (from 0 - " << user.number_of_pokeman-1 << ")\n";
+        cin >> i;
+    }
+    
     cout << "Your have " << user.train << " at most, how much do you want to distribute: \n";
     int j;//distribute quantity
     cin >> j;
+    
+    //in case of illegale input
+    while ( j > user.train || j <= 0 ){
+        cout << "Your have " << user.train << " at most, how much do you want to distribute: \n";
+        cin >> j;
+    }
+    
     int left;//distribute left
     int to_10 = ( 9 - user.bag[i].level ) * 100 + user.bag[i].experience; //distance from 10
-    if ( j > to_10 ){
+    
+    if ( j >= to_10 ){
         left = j - to_10;
         cout << left << " are left." << endl;
+        cout << user.bag[i].name << " is 10 now.\n";
         user.bag[i].level = 10;
         user.bag[i].experience = 0;
         user.train = left;
     }
+    
     else {
+        
         if ( j + user.bag[i].experience < 100 ){
             cout << "Added.\n";
             user.bag[i].experience += j;
+            cout << user.bag[i].name << " is " << user.bag[i].experience << "/100.\n";
         }
+        
         else {
             int level_up;
             level_up = ( j + user.bag[i].experience ) / 100;
@@ -130,6 +165,7 @@ void Level_up(USER &user){
 }
 
 
+//implement the bag
 void Bag(USER &user){
     display_bag(user);
     string command;
@@ -178,7 +214,7 @@ int main()
     
     display1(); //When first open the game, display the menu for user to choose: load game/new game/exit.
     while ( 1 ) //Used when first open the program.
-    {   
+    {
         string get;
         cout << "Instruction:" <<endl;
         cin >> get; //Get the instruction from the user.
@@ -227,6 +263,9 @@ int main()
     string command;
     display();
     cin >> command;
+    if ( command != "SaveAndExit" ){
+        save(user);
+    }
     while ( command != "SaveAndExit" ){
         //battle
         if ( command == "Battle" ){
