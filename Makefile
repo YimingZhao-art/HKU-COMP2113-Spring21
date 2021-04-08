@@ -6,7 +6,7 @@ battle.o: battle.cpp battle.h
 initial.o: initial.cpp initial.h 
 	g++ $(FLAG) -c $<
 
-game.o: game.cpp game.h data.h
+game.o: game.cpp game.h
 	g++ $(FLAG) -c $<
 
 readgame.o: readgame.cpp readgame.h
