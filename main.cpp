@@ -63,21 +63,23 @@ void game(USER &user){
         //Tic_tac-toe
         if ( command == "Tic_Tac_Toe" ){
             if ( Tic_Tac_Toe() ){
-                cout << "Your win 10 golds.\n";
+                cout << "Your win 10 golds and 50 train.\n";
                 user.money += 10;
+                user.train += 50;
             }
             else
-                cout << "Your don't win the golds.\n";
+                cout << "Your don't win.\n";
         }
         
         //Guess
         else if ( command == "Guess" ){
             if ( GUESS() ){
-                cout << "Your win 10 golds.\n";
+                cout << "Your win 10 golds and 50 train.\n";
                 user.money += 10;
+                user.train += 50;
             }
             else
-                cout << "Your don't win the golds.\n";
+                cout << "Your don't win.\n";
         }
         
         display_game();

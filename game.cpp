@@ -15,7 +15,7 @@ using namespace std;
 
 bool GUESS() {
 	cout << "-------------------------------------------------------------------\n";
-	cout << "This is a game to guess a number from 0-9. You will win 10 golds.\n";
+	cout << "This is a game to guess a number from 0-9. You will win 10 golds and 50 train.\n";
 	srand( time( NULL ) );
 	int x = rand() % 10;
 	int temps = 4;
@@ -86,7 +86,7 @@ char win(char array[][3]){
 
 bool Tic_Tac_Toe() {
 	cout << "-------------------------------------------------------------------\n";
-	cout << "This is a tic-tac-toe game. You will win 10 golds.\n";
+	cout << "This is a tic-tac-toe game. You will win 10 golds and 50 train.\n";
 	cout << "You can only put you X on the N.\n";
 	char array[3][3];
 	for (int i = 0; i < 3; i ++)
