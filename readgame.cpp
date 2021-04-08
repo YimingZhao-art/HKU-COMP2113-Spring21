@@ -21,7 +21,7 @@ int read(USER &user)
     string filename = user.name + ".txt";
     ifstream file(filename.c_str());
     if ( file.fail() ){
-        cout << "No such file!" << endl;
+        cout << "No such file! Load fail!" << endl;
         return 0;
     }
     

@@ -20,7 +20,8 @@
 string bossgraph = "                                    *    (---------)       *\n    *|````|*                     *       | \\|/     |          *\n  *--| ^ ^|--*                           | ^-^     |\n     |- ^-|                          /|\\ |-    -   |  /|\\\n     *----*                      *       |\\ ~ /    |          *\n                                    *    (---------)       *\n";
 string normalgraph = "    *|````|*                            *|````|*\n  *--| ^ ^|--*                        *--|^ ^ |--*\n     |- ^-|                              |-^ -|\n     *````*                              *````*\n";
 
-
+//Input: magics(data base), x(level of the pokemon).
+//Function: Display the name list of magics.
 void showmagic( int x, MAGICS magics[] ) //show what magics can be used.
 {
     cout<<"please input the magic you want to use(input number)"<<endl;
@@ -46,6 +47,8 @@ void showmagic( int x, MAGICS magics[] ) //show what magics can be used.
     return;
 }
 
+//Input: level of pokemon, the magic number, characteristcs of pokemon 1 and 2, magics.
+//Output: The damage caused by a magic.
 int dam( int level, int place, string c1, string c2, MAGICS magics[] ) //Calculate the damage.
 {
     int damage = magics[level-place].damage;
@@ -76,7 +79,7 @@ int dam( int level, int place, string c1, string c2, MAGICS magics[] ) //Calcula
     return damage;
 }
 
-
+//This function is the main function of normal battle.
 void normalbattle( USER &user, POKEMON pokemons[], MAGICS magics[] ) //For normal battle, can capture pokemons.
 {
     int numbers = user.number_of_pokeman;
@@ -94,6 +97,7 @@ void normalbattle( USER &user, POKEMON pokemons[], MAGICS magics[] ) //For norma
     int mid;
     int place;
     
+    //Let the user choose a pokemon to attend.
     cout << "choose a pokemon to attend the battle:\n";
     cout << "input a integer which >= 0 and <= "<< can.size()-1 <<endl;
     cin >> place;
@@ -106,6 +110,7 @@ void normalbattle( USER &user, POKEMON pokemons[], MAGICS magics[] ) //For norma
     can[0] = can[place];
     can[place] = mid;
     cout << "-------------------------------------------------------------------\n";
+    //Initial the data of enemies.
     for ( int i = 0; i < 4; i++ )
     {
         pokemons[i].level = user.bag[can[0]].level;
@@ -136,9 +141,9 @@ void normalbattle( USER &user, POKEMON pokemons[], MAGICS magics[] ) //For norma
     int command;
     cin >> command;
     cout << "-------------------------------------------------------------------\n";
-    while( command != 3 )
+    while( command != 3 ) //The main body of the battle.
     {
-        if( command == 1 )
+        if( command == 1 ) //Battle.
         {
             cout << normalgraph;
             cout << user.bag[can[0]].name << " VS " << pokemons[chosen].name << endl
@@ -171,7 +176,7 @@ void normalbattle( USER &user, POKEMON pokemons[], MAGICS magics[] ) //For norma
                 <<  pokemons[chosen].hp<<"/" << pokemons[chosen].hpmax << endl;
         }
         
-        else if( command == 2 )
+        else if( command == 2 ) //Capture.
         {
             if( pokemons[chosen].hp > ( pokemons[chosen].hpmax / 4 ) )
             {
@@ -193,13 +198,13 @@ void normalbattle( USER &user, POKEMON pokemons[], MAGICS magics[] ) //For norma
             }
         }
 
-        else if( command == 3 )
+        else if( command == 3 ) //Flee.
         {
             cout << "run......" << endl;
             return;
         }
 
-        if( pokemons[chosen].hp == 0 )
+        if( pokemons[chosen].hp == 0 ) //Win battle.
         {
             cout << "You win the battle!!!";
             user.train += 5;
@@ -207,13 +212,13 @@ void normalbattle( USER &user, POKEMON pokemons[], MAGICS magics[] ) //For norma
             return;
         }
 
-        if ( user.bag[can[0]].hp == 0 )
+        if ( user.bag[can[0]].hp == 0 ) //Check conditions.
         {
             cout << user.bag[can[0]].name << " was beaten, need another pokemon to attend." << endl;
             can.erase( can.begin() );
             if ( can.size() == 0 )
             {
-                cout << "No more pokemon can fight" << endl;
+                cout << "No more pokemon can fight, you lose." << endl;
                 user.train += 1;
                 cout<<"Experience + 1" << endl;
                 return;
@@ -246,7 +251,7 @@ void normalbattle( USER &user, POKEMON pokemons[], MAGICS magics[] ) //For norma
 
 
 
-
+//This function is the main function of boss battle.
 void bossbattle( USER &user, BOSS boss[], MAGICS magics[] ) //Fight the boss.
 {
     int numbers = user.number_of_pokeman;
@@ -262,7 +267,7 @@ void bossbattle( USER &user, BOSS boss[], MAGICS magics[] ) //Fight the boss.
         }
     int mid;
     int place;
-    
+    //Let the user choose a pokemon to attend.
     cout << "choose a pokemon to attend the battle:\n";
     cout << "input a integer which >= 0 and <= "<<can.size()-1<<endl;
     cin >> place;
@@ -276,6 +281,7 @@ void bossbattle( USER &user, BOSS boss[], MAGICS magics[] ) //Fight the boss.
     can[place] = mid;
     cout << "-------------------------------------------------------------------\n";
 
+    //Initial the data of enemies.
     for ( int i=0; i<4; i++ )
         boss[i].hp = boss[i].hpmax;
     cout << "choose one Boss to fight(input the number):\n";
@@ -303,9 +309,9 @@ void bossbattle( USER &user, BOSS boss[], MAGICS magics[] ) //Fight the boss.
     int command;
     cin >> command;
     cout << "-------------------------------------------------------------------\n";
-    while( command != 2 )
+    while( command != 2 ) //The main body of the battle.
     {
-        if( command == 1 )
+        if( command == 1 ) //Battle.
         {
             cout << bossgraph;
             cout << user.bag[can[0]].name << " VS " << boss[chosen].name << endl
@@ -332,13 +338,13 @@ void bossbattle( USER &user, BOSS boss[], MAGICS magics[] ) //Fight the boss.
                  <<  boss[chosen].hp << "/" << boss[chosen].hpmax << endl;
         }
         
-        else if( command == 2 )
+        else if( command == 2 ) //Flee.
         {
             cout << "run......" << endl;
             return;
         }
 
-        if( boss[chosen].hp == 0 )
+        if( boss[chosen].hp == 0 ) //Win.
         {
             cout << "You win the battle!!!";
             user.train += 20;
@@ -347,13 +353,13 @@ void bossbattle( USER &user, BOSS boss[], MAGICS magics[] ) //Fight the boss.
             return;
         }
 
-        if ( user.bag[can[0]].hp == 0 )
+        if ( user.bag[can[0]].hp == 0 ) //Check conditions.
         {
             cout << user.bag[can[0]].name << " was beaten, need another pokemon." << endl;
             can.erase(can.begin());
             if( can.size() == 0 )
             {
-                cout << "No more pokemon can fight." << endl;
+                cout << "No more pokemon can fight, you lose." << endl;
                 user.train += 3;
                 cout << "Train + 3" << endl;
                 return;

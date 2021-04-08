@@ -48,21 +48,26 @@ void display() {
 //display the choices of game
 void display_game(){
     cout << "-------------------------------------------------------------------\n" <<
-            "Choose one of the games: \n" <<
-            "Tic_Tac_Toe\n" <<
-            "Guess\n" <<
-            "Exit\n";
+            "Choose one of the games(Input the Number): \n" <<
+            "1.Tic_Tac_Toe\n" <<
+            "2.Guess\n\n" <<
+            "0.Exit\n";
 }
 
 //game implementation
 //read a USER, and do change on it
 void game(USER &user){
-    string command;
+    int command;
     display_game();
     cin >> command;
-    while ( command != "Exit" ){
+    while(command < 1 || command > 2)
+    {
+        cout<<"Game do not exist, input again."<<endl;
+        cin >> command;
+    }
+    while ( command != 0 ){
         //Tic_tac-toe
-        if ( command == "Tic_Tac_Toe" ){
+        if ( command == 1 ){
             if ( Tic_Tac_Toe() ){
                 cout << "Your win 10 golds and 50 train.\n";
                 user.money += 10;
@@ -73,7 +78,7 @@ void game(USER &user){
         }
         
         //Guess
-        else if ( command == "Guess" ){
+        else if ( command == 2 ){
             if ( GUESS() ){
                 cout << "Your win 10 golds and 50 train.\n";
                 user.money += 10;
@@ -85,7 +90,7 @@ void game(USER &user){
         
         display_game();
         cin >> command;
-        if ( command == "Exit" )
+        if ( command == 0 )
             return;
     }
 }
@@ -174,7 +179,7 @@ void Bag(USER &user){
     display_bag(user);
     string command;
     cout << "-------------------------------------------------------------------\n" <<
-            "Choose one of the commands: \n" <<
+            "Choose one of the commands(Input the name of command): \n" <<
             "Recover\n" << 
             "DistributeTrain\n" <<
             "Exit\n";
@@ -191,7 +196,7 @@ void Bag(USER &user){
         }
         display_bag(user);
         cout << "-------------------------------------------------------------------\n" <<
-        "Choose one of the commands: \n" <<
+        "Choose one of the commands(Input the name of command): \n" <<
         "Recover\n" <<
         "DistributeTrain\n" <<
         "Exit\n";
@@ -241,6 +246,12 @@ int main()
             cout << "Input your user name: ";
             cin >> user.name;
             user.money = 100;
+            user.train = 0;
+            for (int i = 0; i < 4; i++)
+            {
+                user.bossstatuse[i] = 0;
+                user.capturestatus[i] = 0;
+            }
             cout << "Choose one of the pokemons(input from 0-3):\n";
             for ( int i = 0; i < 4; i++ ){
                 cout << i << ": " << pokemons[i].name <<endl;
