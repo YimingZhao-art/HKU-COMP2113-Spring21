@@ -99,16 +99,16 @@ void game(USER &user){
 //pokemon_hp,hpmax
 //pokemon_character
 void display_bag(USER &user) {
-    cout <<"-------------------------------------------------------------------\n";
-    cout << setw(9) << setfill(' ') << "User: " << user.name << endl;
-    cout << setw(9) << setfill(' ') << "Money: " << user.money << endl;
-    cout << setw(9) << setfill(' ') << "Train: " << user.train << endl;
+    cout << "-------------------------------------------------------------------\n";
+    cout << "User: " << user.name << endl;
+    cout << "Money: " << user.money << endl;
+    cout << "Train: " << user.train << endl;
     for ( int i = 0; i < user.number_of_pokeman; i++ ){
         cout <<"-------------------------------------------------------------------\n";
-        cout << "name: "<< setw(20) << setfill(' ') << user.bag[i].name << ":\n";
-        cout << "level: " << setw(2) << setfill(' ') << user.bag[i].level << ' ' << "experience: " << setw(2) << setfill(' ') << user.bag[i].experience <<endl;
-        cout << "hp: "<< setw(3) << setfill(' ') << user.bag[i].hp << ' ' << "hpmax: "<< setw(3) << setfill(' ') << user.bag[i].hpmax << endl;
-        cout << "character: " << setw(6) << setfill(' ') << user.bag[i].character << endl;
+        cout << "name: "<< user.bag[i].name << ":\n";
+        cout << "level: " << user.bag[i].level << ' ' << "experience: " << user.bag[i].experience <<endl;
+        cout << "hp: " << user.bag[i].hp << ' ' << "hpmax: " << user.bag[i].hpmax << endl;
+        cout << "character: " << user.bag[i].character << endl;
     }
 }
 
@@ -269,7 +269,7 @@ int main()
     string command;
     display();
     cin >> command;
-    if ( command != "SaveAndExit" ){
+    if ( command == "SaveAndExit" ){
         save(user);
     }
     while ( command != "SaveAndExit" ){
