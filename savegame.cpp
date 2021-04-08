@@ -12,6 +12,8 @@
 #include "data.h"
 #include "initial.h"
 using namespace std;
+
+//read a USER, and store the information in user to [username].txt
 void save( USER &user )
 {
     string filename = user.name + ".txt";
