@@ -15,6 +15,7 @@
 
 using namespace std;
 
+//read magics,and set the default number
 void initialmagics(MAGICS magics[]) //Initial the magics of the game.
 {
     for(int i=0; i<10; i++)
@@ -35,6 +36,7 @@ void initialmagics(MAGICS magics[]) //Initial the magics of the game.
     return;
 }
 
+//set the boss default parameter
 void initialboss(BOSS boss[]) //Initial the data of boss.
 {
     //Initial the name of boss
@@ -57,6 +59,7 @@ void initialboss(BOSS boss[]) //Initial the data of boss.
 }
 
 
+//set the pokemon default
 void initialpokemon(POKEMON pokemons[]) //Initial the data of Pokemons.
 {   
     //Initial the name of pokemons.
