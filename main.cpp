@@ -28,30 +28,39 @@ USER user;
 
 ///display the mode
 void display1() {
-    cout << "-------------------------------------------------------------------\n" <<
-            "Choose one of the modes(Please input the name of the mode): \n" <<
-            "loadgame\n" <<
-            "newgame\n" <<
-            "exit\n" ;
+    cout << endl;
+    cout << endl;
+    cout << "------------------------------Start--------------------------------\n" <<
+            "Choose one of the modes(Please input the number of the mode): \n" <<
+            "1. loadgame\n" <<
+            "2. newgame\n" <<
+            "0. exit\n" ;
+            cout << "-------------------------------------------------------------------\n";
 }
 
 //display the command of mode
 void display() {
-    cout << "-------------------------------------------------------------------\n" <<
-            "Choose one of the commands(Please input the name of the mode): \n" <<
-            "Battle\n" <<
-            "Bag\n" <<
-            "Games\n" <<
-            "SaveAndExit\n";
+    cout << endl;
+    cout << endl;
+    cout << "-----------------------------Playing-------------------------------\n" <<
+            "Choose one of the commands(Please input the number of the mode): \n" <<
+            "1. Battle\n" <<
+            "2. Bag\n" <<
+            "3. Games\n" <<
+            "0. SaveAndExit\n";
+            cout << "-------------------------------------------------------------------\n";
 }
 
 //display the choices of game
 void display_game(){
-    cout << "-------------------------------------------------------------------\n" <<
+    cout << endl;
+    cout << endl;
+    cout << "------------------------------Games--------------------------------\n" <<
             "Choose one of the games(Input the Number): \n" <<
-            "1.Tic_Tac_Toe\n" <<
-            "2.Guess\n\n" <<
-            "0.Exit\n";
+            "1. Tic_Tac_Toe\n" <<
+            "2. Guess\n" <<
+            "0. Exit\n";
+            cout << "-------------------------------------------------------------------\n";
 }
 
 //game implementation
@@ -60,7 +69,7 @@ void game(USER &user){
     int command;
     display_game();
     cin >> command;
-    while(command < 1 || command > 2)
+    while ( (command < 1 || command > 2) && command != 0 )
     {
         cout<<"Game do not exist, input again."<<endl;
         cin >> command;
@@ -104,22 +113,23 @@ void game(USER &user){
 //pokemon_hp,hpmax
 //pokemon_character
 void display_bag(USER &user) {
-    cout << "-------------------------------------------------------------------\n";
+    cout << "----------------------------User_Info------------------------------\n";
     cout << "User: " << user.name << endl;
     cout << "Money: " << user.money << endl;
     cout << "Train: " << user.train << endl;
     for ( int i = 0; i < user.number_of_pokeman; i++ ){
-        cout <<"-------------------------------------------------------------------\n";
+        cout <<"-----------------------------Pokemon-------------------------------\n";
         cout << "name: "<< user.bag[i].name << ":\n";
         cout << "level: " << user.bag[i].level << ' ' << "experience: " << user.bag[i].experience <<endl;
         cout << "hp: " << user.bag[i].hp << ' ' << "hpmax: " << user.bag[i].hpmax << endl;
         cout << "character: " << user.bag[i].character << endl;
     }
+    
 }
 
 //distribute the train to pokemon
 void Level_up(USER &user){
-    cout <<"-------------------------------------------------------------------\n";
+    cout <<"-----------------------------LevelUp-------------------------------\n";
     cout << "Choose the pokemon you want to level-up: (from 0 - " << user.number_of_pokeman-1 << ")\n";
     int i; //pokemon
     cin >> i;
@@ -128,6 +138,9 @@ void Level_up(USER &user){
     while ( user.bag[i].level == 10 ){
         cout << "This pokemon is 10 already!\n";
         cout << "Choose the pokemon you want to level-up: (from 0 - " << user.number_of_pokeman-1 << ")\n";
+        cout << "Input -1 to end: " << endl;
+        if ( i == -1 )
+            break;
         cin >> i;
     }
     
@@ -141,16 +154,18 @@ void Level_up(USER &user){
         cin >> j;
     }
     
+        
     int left;//distribute left
     int to_10 = ( 9 - user.bag[i].level ) * 100 + user.bag[i].experience; //distance from 10
     
     if ( j >= to_10 ){
+        user.train -= j;
         left = j - to_10;
         cout << left << " are left." << endl;
         cout << user.bag[i].name << " is 10 now.\n";
         user.bag[i].level = 10;
         user.bag[i].experience = 0;
-        user.train = left;
+        user.train += left;
     }
     
     else {
@@ -180,30 +195,34 @@ void Level_up(USER &user){
 //implement the bag
 void Bag(USER &user){
     display_bag(user);
-    string command;
-    cout << "-------------------------------------------------------------------\n" <<
-            "Choose one of the commands(Input the name of command): \n" <<
-            "Recover\n" << 
-            "DistributeTrain\n" <<
-            "Exit\n";
+    int command;
+    cout << "-------------------------------Bag---------------------------------\n" <<
+            "Choose one of the commands(Input the number of command): \n" <<
+            "1. Recover\n" << 
+            "2. DistributeTrain\n" <<
+            "0. Exit\n";
+    cout << "-------------------------------------------------------------------\n";
     cin >> command;
-    while ( command != "Exit" ){
-        if ( command == "Recover" ){
+    cout << endl;
+    while ( command != 0 ){
+        if ( command == 1 ){
             user.money -= 5;
             for ( int i = 0; i < user.number_of_pokeman; i++ )
                 user.bag[i].hp = user.bag[i].hpmax;
         }
-        else if ( command == "DistributeTrain" ){
+        else if ( command == 2 ){
             //insert the level-up
             Level_up(user);
         }
         display_bag(user);
-        cout << "-------------------------------------------------------------------\n" <<
+        cout << "-------------------------------Bag---------------------------------\n" <<
         "Choose one of the commands(Input the name of command): \n" <<
-        "Recover\n" <<
-        "DistributeTrain\n" <<
-        "Exit\n";
+        "1. Recover\n" <<
+        "2. DistributeTrain\n" <<
+        "0. Exit\n";
+        cout << "-------------------------------------------------------------------\n";
         cin >> command;
+        cout << endl;
     }
     return;
 }
@@ -223,18 +242,18 @@ int main()
     initialmagics(magics); //Initialize the data of magics.
     initialboss(boss); //Initial the data of boss.
     initialpokemon(pokemons); //Initial the data of Pokemons.
-    cout << "----------------------------POKEMON--------------------------------\n";
-    
+    cout << "---------------------------**POKEMON**-----------------------------\n";
+    cout << endl;
     while ( 1 ) //Used when first open the program.
     {
         display1(); //When first open the game, display the menu for user to choose: load game/new game/exit.
-        string get;
-        cout << "-------------------------------------------------------------------\n";
-        cout << "Instruction:" <<endl;
+        int get;
+        cout << "-----------------------------Running-------------------------------\n";
+        cout << "Instruction:" << endl;
         cin >> get; //Get the instruction from the user.
+        cout << endl;
         
-        
-        if ( get == "loadgame" )
+        if ( get == 1 )
         {
             cout << "Input your user name: ";
             cin >> user.name;
@@ -243,7 +262,7 @@ int main()
         }
         
         
-        else if ( get == "newgame" )
+        else if ( get == 2 )
         {
             //newgame(); //Call the function to create new game.
             cout << "Input your user name: ";
@@ -270,7 +289,7 @@ int main()
         }
         
         
-        else if ( get == "exit" ){
+        else if ( get == 0 ){
             return 0; //shutdown the game.
         }
         
@@ -280,16 +299,19 @@ int main()
     
 
     //The following part would be main body of the program.
-    string command;
+    int command;
     display();
     cin >> command;
-    if ( command == "SaveAndExit" ){
+    cout << endl;
+    if ( command == 0 ){
         save(user);
     }
-    while ( command != "SaveAndExit" ){
+    while ( command != 0 ){
         //battle
-        if ( command == "Battle" ){
-            cout << "-------------------------------------------------------------------\n";
+        if ( command == 1 ){
+            cout << endl;
+            cout << endl;
+            cout << "------------------------------Battle-------------------------------\n";
             cout<< "Choose battle type(please enter the number of the command):\n"
                 << "1. Fight creeps\n"
                 << "2. Fight Boss\n";
@@ -310,15 +332,13 @@ int main()
         
         
         //Bag
-        else if ( command == "Bag" ){
+        else if ( command == 2 ){
             Bag( user );
-            cout << "press \"Enter\" to continue" << endl;
-            getchar();
         }
         
         
         //Game
-        else if ( command == "Games" ){
+        else if ( command == 3 ){
             game( user );
             cout << "press \"Enter\" to continue" << endl;
             getchar();
@@ -327,7 +347,8 @@ int main()
         
         display();
         cin >> command;
-        if ( command == "SaveAndExit" )
+        cout << endl;
+        if ( command == 0 )
             save(user);
     }
     return 0;
