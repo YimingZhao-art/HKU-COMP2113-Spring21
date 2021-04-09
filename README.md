@@ -53,6 +53,7 @@
   - Doing small game to earn train and money by use `.h` `.cpp` and rand():
     - 	Try tic-tac-toe
     - 	Try guess a random numebr
+    - 	Try paper-scissors-rock
     - 	Earn 10 golds and 50 train if win.
   
   - Bag interface by vector etc. :
