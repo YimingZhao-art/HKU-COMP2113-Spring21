@@ -169,12 +169,12 @@ void normalbattle( USER &user, POKEMON pokemons[], MAGICS magics[] ) //For norma
                     cmagic2 = ( rand() % 4 ) + 1;
                 }
             srand( time(NULL) );
-            int d1 = dam( l1,cmagic1,user.bag[can[0]].character, pokemons[chosen].character,magics ) + (rand() % 10) - 5;
-            int d2 = dam( l2,cmagic2,pokemons[chosen].character,user.bag[can[0]].character,magics ) + (rand() % 8) - 4;
-            if(d1 < 0)
-                d1 = 0;
-            if(d2 < 0)
-                d2 = 0;
+            int d1 = dam( l1,cmagic1,user.bag[can[0]].character, pokemons[chosen].character,magics ) + (rand() % 11) - 5;
+            int d2 = dam( l2,cmagic2,pokemons[chosen].character,user.bag[can[0]].character,magics ) + (rand() % 7) - 3;
+            if(d1 <= 0)
+                d1 = 1;
+            if(d2 <= 0)
+                d2 = 1;
             user.bag[can[0]].hp -= d2;
             pokemons[chosen].hp -= d1;
             cout << user.bag[can[0]].name << " use " << magics[l1-cmagic1].name << " cause " << d1 << " damage" << endl;
@@ -340,12 +340,12 @@ void bossbattle( USER &user, BOSS boss[], MAGICS magics[] ) //Fight the boss.
             srand( time(NULL) );
             cmagic2 = ( rand() % 4 ) + 1;
             srand( time(NULL) );
-            int d1 = dam( l1, cmagic1, user.bag[can[0]].character, boss[chosen].character, magics ) + (rand() % 10) - 5;
-            int d2 = dam( l2, cmagic2,boss[chosen].character, user.bag[can[0]].character, magics ) * 1.1 + (rand() % 8) - 4; //Boss will cause extra damage
-            if(d1 < 0)
-                d1 = 0;
-            if(d2 < 0)
-                d2 = 0;
+            int d1 = dam( l1, cmagic1, user.bag[can[0]].character, boss[chosen].character, magics ) + (rand() % 11) - 5;
+            int d2 = dam( l2, cmagic2,boss[chosen].character, user.bag[can[0]].character, magics ) * 1.1 + (rand() % 7) - 3; //Boss will cause extra damage
+            if(d1 <= 0)
+                d1 = 1;
+            if(d2 <= 0)
+                d2 = 1;
             user.bag[can[0]].hp -= d2;
             boss[chosen].hp -= d1;
             cout << user.bag[can[0]].name << " use "<< magics[l1-cmagic1].name << " cause " << d1 << " damage" << endl;
