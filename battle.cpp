@@ -118,9 +118,8 @@ void normalbattle( USER &user, POKEMON pokemons[], MAGICS magics[] ) //For norma
         pokemons[i].hpmax = 24 * pokemons[i].level;
     }
     cout << "choose one enemy to fight(input the number):\n";
-    for( int i = 0;i < 4;i++ )
-        cout << i << "." << pokemons[i].name << " ";
-    cout << endl;
+    for( int i = 0; i < 4; i++ )
+        cout << i << "." << pokemons[i].name << endl;
 
     int chosen;
     cin >> chosen;
@@ -295,7 +294,6 @@ void bossbattle( USER &user, BOSS boss[], MAGICS magics[] ) //Fight the boss.
     cout << "choose one Boss to fight(input the number):\n";
     for( int i = 0; i < 4; i++ )
             cout << i << "." << boss[i].name << "(have been beaten for " << user.bossstatuse[i] << " times)\n";
-    cout << endl;
 
     int chosen;
     cin >> chosen;

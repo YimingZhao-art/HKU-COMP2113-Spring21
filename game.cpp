@@ -15,7 +15,7 @@ using namespace std;
 //read nothing, return true if won
 bool GUESS() {
 	cout << "-------------------------------------------------------------------\n";
-	cout << "This is a game to guess a number from 0-9. You will win 10 golds and 50 train.\n";
+	cout << "This is a game to guess a number from 0-9. You will win 10 golds and 5 train.\n";
 	srand( time( NULL ) );
 	int x = rand() % 10;
 	int temps = 4;
@@ -90,7 +90,7 @@ char win(char array[][3]){
 //read nothing, return wether win
 bool Tic_Tac_Toe() {
 	cout << "-------------------------------------------------------------------\n";
-	cout << "This is a tic-tac-toe game. You will win 10 golds and 50 train.\n";
+	cout << "This is a tic-tac-toe game. You will win 10 golds and 5 train.\n";
 	cout << "You can only put you X on the N.\n";
 	char array[3][3];
 	for (int i = 0; i < 3; i ++)
@@ -132,4 +132,107 @@ bool Tic_Tac_Toe() {
 	
 	
 	return false;
+}
+
+//A game: scissors paper rock.
+//Output: Whether win or not.
+bool scissors_paper_rock()
+{
+	cout << "-------------------------------------------------------------------\n";
+	cout << "This is a scissors-paper-rock game. You will win 10 golds and 5 train.\n";
+	cout << "In this 3-round game you need to win at least 2 rounds to win\n";
+	int wintime = 0;
+	for ( int i = 1; i <= 3; i++)
+	{
+		cout << "-------------------------------------------------------------------\n";
+		cout << "Round: "<<i<<endl;
+		cout << "Please input the number of your choice\n";
+		cout << "1.Paper\n2.Scissors\n3.Rock\n";
+		int c1, c2; //The choice of user and computer;
+		cin>>c1;
+		while( c1 < 1 || c1 > 3)
+		{
+			cout<<"Wrong input, try again.\n";
+			cin>>c1;
+		}
+		srand(time(NULL)); 
+		c2 = ( rand() % 3 ) + 1;
+		cout << "You choose: ";
+		if( c1 == 1)
+			cout << "Paper ";
+		else if( c1 == 2)
+			cout << "Scissors ";
+		else
+			cout << "Rock ";
+		cout << "Computer choose: ";
+		if( c2 == 1)
+			cout << "Paper\n";
+		else if( c2 == 2)
+			cout << "Scissors\n";
+		else
+			cout << "Rock\n";
+		
+		if( c1 == 1)
+		{
+			if(c2 == 1)
+			{
+				cout << "It's a draw, this round will not be count\n";
+				i--;
+			}
+			else if( c2 == 2)
+			{
+				cout << "You lose this round\n";
+			}
+			else
+			{
+				cout << "You win this round\n";
+				wintime++;
+			}
+		}
+
+		else if( c1 == 2)
+		{
+			if(c2 == 2)
+			{
+				cout << "It's a draw, this round will not be count\n";
+				i--;
+			}
+			else if( c2 == 3)
+			{
+				cout << "You lose this round\n";
+			}
+			else
+			{
+				cout << "You win this round\n";
+				wintime++;
+			}
+		}
+		else
+		{
+			if(c2 == 3)
+			{
+				cout << "It's a draw, this round will not be count\n";
+				i--;
+			}
+			else if( c2 == 1)
+			{
+				cout << "You lose this round\n";
+			}
+			else
+			{
+				cout << "You win this round\n";
+				wintime++;
+			}
+		}
+	}
+	if (wintime >= 2)
+	{
+		cout<<"You win the game.\n";
+		return 1;
+	} 
+	else
+	{
+		cout<<"You lose the game.\n";
+		return 0;
+	}
 }

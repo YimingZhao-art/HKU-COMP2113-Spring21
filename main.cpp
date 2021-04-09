@@ -36,6 +36,7 @@ void display1() {
             "2. newgame\n" <<
             "0. exit\n" ;
             cout << "-------------------------------------------------------------------\n";
+    return;
 }
 
 //display the command of mode
@@ -49,6 +50,7 @@ void display() {
             "3. Games\n" <<
             "0. SaveAndExit\n";
             cout << "-------------------------------------------------------------------\n";
+    return;
 }
 
 //display the choices of game
@@ -59,8 +61,10 @@ void display_game(){
             "Choose one of the games(Input the Number): \n" <<
             "1. Tic_Tac_Toe\n" <<
             "2. Guess\n" <<
-            "0. Exit\n";
+            "3. Paper_Scissors_Rock\n" <<
+            "\n0. Exit\n";
             cout << "-------------------------------------------------------------------\n";
+    return;
 }
 
 //game implementation
@@ -69,7 +73,7 @@ void game(USER &user){
     int command;
     display_game();
     cin >> command;
-    while ( (command < 1 || command > 2) && command != 0 )
+    while (command < 0 || command > 3)
     {
         cout<<"Game do not exist, input again."<<endl;
         cin >> command;
@@ -78,23 +82,34 @@ void game(USER &user){
         //Tic_tac-toe
         if ( command == 1 ){
             if ( Tic_Tac_Toe() ){
-                cout << "Your win 10 golds and 5 train.\n";
+                cout << "You win 10 golds and 5 train.\n";
                 user.money += 10;
                 user.train += 5;
             }
             else
-                cout << "Your don't win.\n";
+                cout << "You don't win.\n";
         }
         
         //Guess
         else if ( command == 2 ){
             if ( GUESS() ){
-                cout << "Your win 10 golds and 5 train.\n";
+                cout << "You win 10 golds and 5 train.\n";
                 user.money += 10;
                 user.train += 5;
             }
             else
-                cout << "Your don't win.\n";
+                cout << "You don't win.\n";
+        }
+
+        else if (command == 3){
+            if( scissors_paper_rock() )
+            {
+                cout << "You win 10 golds and 5 train.\n";
+                user.money += 10;
+                user.train += 5;
+            }
+            else
+                cout << "You don't win.\n";
         }
         
         display_game();
@@ -124,7 +139,7 @@ void display_bag(USER &user) {
         cout << "hp: " << user.bag[i].hp << ' ' << "hpmax: " << user.bag[i].hpmax << endl;
         cout << "character: " << user.bag[i].character << endl;
     }
-    
+    return;
 }
 
 //distribute the train to pokemon
@@ -189,6 +204,7 @@ void Level_up(USER &user){
     
     user.bag[i].hp = user.bag[i].level * 24;
     user.bag[i].hpmax = user.bag[i].level * 24;
+    return;
 }
 
 
