@@ -159,9 +159,15 @@ void Level_up(USER &user){
         cin >> i;
     }
     
+    if ( user.train == 0 ){
+        cout << "No train to distribute.\n";
+        return;
+    }
+    
     cout << "Your have " << user.train << " at most, how much do you want to distribute: \n";
     int j;//distribute quantity
     cin >> j;
+    
     
     //in case of illegale input
     while ( j > user.train || j <= 0 ){
