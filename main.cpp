@@ -264,7 +264,7 @@ int main()
     initialmagics(magics); //Initialize the data of magics.
     initialboss(boss); //Initial the data of boss.
     initialpokemon(pokemons); //Initial the data of Pokemons.
-    cout << "---------------------------**POKEMON**-----------------------------\n";
+    cout << "==============================POKEMON==============================\n";
     cout << endl;
     while ( 1 ) //Used when first open the program.
     {
