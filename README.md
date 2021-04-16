@@ -114,6 +114,7 @@
    - `savegame.cpp` save information to file
    - `battle.cpp` battle function
    - `initial.cpp` initial the data
+   - `notakto.cpp` do the notakto game
  - `header` i.e. `*.h`
    - `game.h` store the declaration of game 	
    - `savegame.h` store the declaration of savegame 
@@ -121,6 +122,7 @@
    - `battle.h` store the declaration of battle
    - `data.h` store the struct of user, pokemon, etc
    - `initial.h`
+   - `notakto.h` store the game notakto
  - `Makefile`
    - for compile the code
    - delete the `*.cpp` and `*.o` and `*.h` after compile 
