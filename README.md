@@ -11,6 +11,7 @@
 
 - Players can choose an initial Pokemon at the beginning. In this game, players can fight, train, strengthen their Pokemon, and defeat the bosses that appear in the game. In addition to the regular Pokémon mode, you can choose to play several types of mini games provided to earn rewards and have fun.
 - The game provides a file io-based archive system, allowing you to continue your unfinished adventure the next time you open it.
+- What we do are not only a battle game. However, we are trying to make a system for players, where they can battle happily but play some small games for fun.
 
 1. Rules
 
