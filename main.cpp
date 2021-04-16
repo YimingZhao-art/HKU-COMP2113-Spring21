@@ -16,6 +16,7 @@
 #include "readgame.h"
 #include "game.h"
 #include "battle.h"
+#include "notakto.h"
 
 
 using namespace std;
@@ -62,6 +63,7 @@ void display_game(){
             "1. Tic_Tac_Toe\n" <<
             "2. Guess\n" <<
             "3. Paper_Scissors_Rock\n" <<
+            "4. Notakto\n" <<
             "\n0. Exit\n";
             cout << "-------------------------------------------------------------------\n";
     return;
@@ -73,7 +75,7 @@ void game(USER &user){
     int command;
     display_game();
     cin >> command;
-    while (command < 0 || command > 3)
+    while (command < 0 || command > 4)
     {
         cout<<"Game do not exist, input again."<<endl;
         cin >> command;
@@ -82,9 +84,9 @@ void game(USER &user){
         //Tic_tac-toe
         if ( command == 1 ){
             if ( Tic_Tac_Toe() ){
-                cout << "You win 10 golds and 5 train.\n";
-                user.money += 10;
-                user.train += 5;
+                cout << "You win 20 golds and 40 train.\n";
+                user.money += 20;
+                user.train += 40;
             }
             else
                 cout << "You don't win.\n";
@@ -101,7 +103,7 @@ void game(USER &user){
                 cout << "You don't win.\n";
         }
 
-        else if (command == 3){
+        else if ( command == 3 ){
             if( scissors_paper_rock() )
             {
                 cout << "You win 10 golds and 5 train.\n";
@@ -110,6 +112,17 @@ void game(USER &user){
             }
             else
                 cout << "You don't win.\n";
+        }
+        
+        else if ( command == 4 ){
+            if ( Notakto() == 1 ){
+                cout << "You win 40 golds and 80 train.\n";
+                user.money += 40;
+                user.train += 80;
+            }
+            else {
+                cout << "You don't win.\n";
+            }
         }
         
         display_game();
