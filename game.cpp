@@ -224,13 +224,18 @@ bool scissors_paper_rock()
 				wintime++;
 			}
 		}
+		if(wintime == 2)
+		{
+			cout<<"You win the game.\n";
+			return 1;
+		}
+		if(wintime == 0 && i == 2)
+		{
+			cout<<"You lose the game.\n";
+			return 0;
+		}
 	}
-	if (wintime >= 2)
-	{
-		cout<<"You win the game.\n";
-		return 1;
-	} 
-	else
+	if(wintime < 2)
 	{
 		cout<<"You lose the game.\n";
 		return 0;
