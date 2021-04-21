@@ -30,8 +30,7 @@ USER user;
 
 ///display the mode
 void display1() {
-    cout << endl;
-    cout << endl;
+    system("clear");
     cout << "------------------------------Start--------------------------------\n" <<
             "Choose one of the modes(Please input the number of the mode): \n" <<
             "1. loadgame\n" <<
@@ -55,8 +54,7 @@ void display() {
 }
 
 //display the choices of game
-void display_game(){
-    system("clear");
+void display_game(){    
     cout << "------------------------------Games--------------------------------\n" <<
             "Choose one of the games(Input the Number): \n" <<
             "1. Tic_Tac_Toe\n" <<
@@ -367,8 +365,6 @@ int main()
         //battle
         if ( command == 1 ){
             system("clear");
-            cout << endl;
-            cout << endl;
             cout << "------------------------------Battle-------------------------------\n";
             cout<< "Choose battle type(please enter the number of the command):\n"
                 << "1. Fight creeps\n"

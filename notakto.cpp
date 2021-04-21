@@ -98,6 +98,7 @@ void KillDead(vector<string> &board){
 
 
 void PrintBoard(vector<string> board){
+	
 	for ( int i = 0; i < board.size(); i++ )
 		cout << board[i][0] << "      ";
 	cout << endl;
@@ -115,13 +116,11 @@ int Notakto() {
 	Initialize(boards);
 	PrintBoard(boards);
 	while ( boards.size() ){
-		
 		Readin(boards);
 		KillDead(boards);
 		PrintBoard(boards);
 		if ( !boards.size() )
 			return 0;
-		
 		
 		Randomin(boards);
 		KillDead(boards);

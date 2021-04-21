@@ -36,14 +36,13 @@ bool GUESS() {
 
 //read a board and print the board
 void print(char array[][3]){
-	cout << "-----" << endl;
+	system("clear");
 	for (int i = 0; i < 3; i ++){
 		for (int j =0; j < 3; j++){
 			cout << array[i][j] << ' ';
 		}
 		cout << endl;
 	}
-	cout << "-----" << endl;
 }
 
 //read a board and user, return whether the user win
@@ -240,4 +239,5 @@ bool scissors_paper_rock()
 		cout<<"You lose the game.\n";
 		return 0;
 	}
+	return 1;
 }
