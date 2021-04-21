@@ -54,7 +54,8 @@ void display() {
 }
 
 //display the choices of game
-void display_game(){    
+void display_game(){
+    
     cout << "------------------------------Games--------------------------------\n" <<
             "Choose one of the games(Input the Number): \n" <<
             "1. Tic_Tac_Toe\n" <<
@@ -383,13 +384,15 @@ int main()
                 bossbattle( user, boss, magics );
             }
             cout << "press \"Enter\" to continue" << endl;
-            getchar();
+            system("pause");
         }
         
         
         //Bag
         else if ( command == 2 ){
             Bag( user );
+            cout << "press \"Enter\" to continue" << endl;
+            system("pause");
         }
         
         
@@ -397,12 +400,17 @@ int main()
         else if ( command == 3 ){
             game( user );
             cout << "press \"Enter\" to continue" << endl;
-            getchar();
+            system("pause");
         }
         
         
         display();
         cin >> command;
+        if (command < 0 || command > 3)
+        {
+            cout<<"Wrong input, try agian.\n";
+            cin >> command;
+        }
         cout << endl;
         if ( command == 0 )
             save(user);
