@@ -139,9 +139,15 @@ void normalbattle( USER &user, POKEMON pokemons[], MAGICS magics[] ) //For norma
     int l1, l2 = pokemons[chosen].level;
     int command;
     cin >> command;
+    while (command < 1 || command > 3)
+    {
+        cout << "Wrong input, please input again.\n";
+        cin >> command;
+    }
     cout << "-------------------------------------------------------------------\n";
     while( command != 3 ) //The main body of the battle.
     {
+        system("clear");
         if( command == 1 ) //Battle.
         {
             cout << normalgraph;
@@ -319,9 +325,15 @@ void bossbattle( USER &user, BOSS boss[], MAGICS magics[] ) //Fight the boss.
     int l1, l2 = boss[chosen].level;
     int command;
     cin >> command;
+    while (command < 1 || command > 3)
+    {
+        cout << "Wrong input, please input again.\n";
+        cin >> command;
+    }
     cout << "-------------------------------------------------------------------\n";
     while( command != 2 ) //The main body of the battle.
     {
+        system("clear");
         if( command == 1 ) //Battle.
         {
             cout << bossgraph;
