@@ -124,6 +124,7 @@ void normalbattle( USER &user, POKEMON pokemons[], MAGICS magics[] ) //For norma
     int chosen;
     cin >> chosen;
     
+    //check if the input is legal
     while( chosen>3 || chosen <0 )
     {
         cout << "Do not exist, try again.\n";
@@ -139,6 +140,7 @@ void normalbattle( USER &user, POKEMON pokemons[], MAGICS magics[] ) //For norma
     int l1, l2 = pokemons[chosen].level;
     int command;
     cin >> command;
+    //check if the input is legal
     while (command < 1 || command > 3)
     {
         cout << "Wrong input, please input again.\n";
@@ -289,6 +291,8 @@ void bossbattle( USER &user, BOSS boss[], MAGICS magics[] ) //Fight the boss.
     cout << "choose a pokemon to attend the battle:\n";
     cout << "input a integer which >= 0 and <= "<<can.size()-1<<endl;
     cin >> place;
+    
+    //check if the input is legal
     while( place >= can.size() || place < 0 )
     {
         cout << "Do not exist, try again.\n";
@@ -309,6 +313,7 @@ void bossbattle( USER &user, BOSS boss[], MAGICS magics[] ) //Fight the boss.
     int chosen;
     cin >> chosen;
     
+    //check if the input is legal
     while( chosen > 3 || chosen < 0)
     {
         cout << "Do not exist, try again.\n";
@@ -325,6 +330,7 @@ void bossbattle( USER &user, BOSS boss[], MAGICS magics[] ) //Fight the boss.
     int l1, l2 = boss[chosen].level;
     int command;
     cin >> command;
+    //check if the input is legal
     while (command < 1 || command > 3)
     {
         cout << "Wrong input, please input again.\n";
