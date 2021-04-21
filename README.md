@@ -132,3 +132,5 @@
  - `Makefile`
    - for compile the code
    - delete the `*.cpp` and `*.o` and `*.h` after compile 
+ - `Sample input-output.docx`
+   - show the samples of input and output.  
