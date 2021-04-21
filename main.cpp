@@ -17,6 +17,7 @@
 #include "game.h"
 #include "battle.h"
 #include "notakto.h"
+#include "MineSweep.h"
 
 
 using namespace std;
@@ -42,8 +43,7 @@ void display1() {
 
 //display the command of mode
 void display() {
-    cout << endl;
-    cout << endl;
+    system("clear");
     cout << "-----------------------------Playing-------------------------------\n" <<
             "Choose one of the commands(Please input the number of the mode): \n" <<
             "1. Battle\n" <<
@@ -56,14 +56,14 @@ void display() {
 
 //display the choices of game
 void display_game(){
-    cout << endl;
-    cout << endl;
+    system("clear");
     cout << "------------------------------Games--------------------------------\n" <<
             "Choose one of the games(Input the Number): \n" <<
             "1. Tic_Tac_Toe\n" <<
             "2. Guess\n" <<
             "3. Paper_Scissors_Rock\n" <<
             "4. Notakto\n" <<
+            "5. MineSweep\n" <<
             "\n0. Exit\n";
             cout << "-------------------------------------------------------------------\n";
     return;
@@ -72,10 +72,11 @@ void display_game(){
 //game implementation
 //read a USER, and do change on it
 void game(USER &user){
+    
     int command;
     display_game();
     cin >> command;
-    while (command < 0 || command > 4)
+    while (command < 0 || command > 5)
     {
         cout<<"Game do not exist, input again."<<endl;
         cin >> command;
@@ -83,6 +84,7 @@ void game(USER &user){
     while ( command != 0 ){
         //Tic_tac-toe
         if ( command == 1 ){
+            system("clear");
             if ( Tic_Tac_Toe() ){
                 cout << "You win 20 golds and 40 train.\n";
                 user.money += 20;
@@ -94,6 +96,7 @@ void game(USER &user){
         
         //Guess
         else if ( command == 2 ){
+            system("clear");
             if ( GUESS() ){
                 cout << "You win 10 golds and 5 train.\n";
                 user.money += 10;
@@ -104,6 +107,7 @@ void game(USER &user){
         }
 
         else if ( command == 3 ){
+            system("clear");
             if( scissors_paper_rock() )
             {
                 cout << "You win 10 golds and 5 train.\n";
@@ -115,6 +119,7 @@ void game(USER &user){
         }
         
         else if ( command == 4 ){
+            system("clear");
             if ( Notakto() == 1 ){
                 cout << "You win 40 golds and 80 train.\n";
                 user.money += 40;
@@ -125,6 +130,18 @@ void game(USER &user){
             }
         }
         
+        else if ( command == 5 ){
+            system("clear");
+            if ( MineSweep() ){
+                cout << "You win 80 golds and 160 train.\n";
+                user.money += 80;
+                user.train += 160;
+            }
+            else {
+                cout << "You don't win.\n";
+            }
+        }
+
         display_game();
         cin >> command;
         if ( command == 0 )
@@ -141,6 +158,7 @@ void game(USER &user){
 //pokemon_hp,hpmax
 //pokemon_character
 void display_bag(USER &user) {
+    system("clear");
     cout << "----------------------------User_Info------------------------------\n";
     cout << "User: " << user.name << endl;
     cout << "Money: " << user.money << endl;
@@ -274,6 +292,7 @@ void Bag(USER &user){
 
 int main()
 {
+    system("clear");
     initialmagics(magics); //Initialize the data of magics.
     initialboss(boss); //Initial the data of boss.
     initialpokemon(pokemons); //Initial the data of Pokemons.
@@ -292,6 +311,7 @@ int main()
         {
             cout << "Input your user name: ";
             cin >> user.name;
+            system("clear");
             if ( read(user) != 0 ) 
                 break; //Call the function to load the game.
         }
@@ -302,6 +322,7 @@ int main()
             //newgame(); //Call the function to create new game.
             cout << "Input your user name: ";
             cin >> user.name;
+            system("clear");
             user.money = 100;
             user.train = 0;
             for (int i = 0; i < 4; i++)
@@ -335,6 +356,7 @@ int main()
 
     //The following part would be main body of the program.
     int command;
+    
     display();
     cin >> command;
     cout << endl;
@@ -344,6 +366,7 @@ int main()
     while ( command != 0 ){
         //battle
         if ( command == 1 ){
+            system("clear");
             cout << endl;
             cout << endl;
             cout << "------------------------------Battle-------------------------------\n";
@@ -357,10 +380,12 @@ int main()
                 cout<<"Wrong command, try again!\n";
                 cin>>type;
             }
-            if( type == 1 )
+            if( type == 1 ){
                 normalbattle( user, pokemons, magics);
-            else
+            }
+            else{
                 bossbattle( user, boss, magics );
+            }
             cout << "press \"Enter\" to continue" << endl;
             getchar();
         }

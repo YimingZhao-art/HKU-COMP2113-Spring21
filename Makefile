@@ -18,11 +18,13 @@ savegame.o: savegame.cpp savegame.h
 notakto.o : notakto.cpp notakto.h
 	g++ $(FALG) -c $<	
 	
+MineSweep.o: MineSweep.cpp Minesweep.h
+	g++ $(FALG) -c $<
 	
 main.o: main.cpp
 	g++ $(FLAG) -c $<
 	
-main: main.o initial.o game.o readgame.o savegame.o battle.o notakto.o
+main: main.o initial.o game.o readgame.o savegame.o battle.o notakto.o MineSweep.o
 	g++ $(FLAG) $^ -o $@
 
 clean:
