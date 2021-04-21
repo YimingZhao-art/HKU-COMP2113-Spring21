@@ -42,7 +42,6 @@ void display1() {
 
 //display the command of mode
 void display() {
-    system("clear");
     cout << "-----------------------------Playing-------------------------------\n" <<
             "Choose one of the commands(Please input the number of the mode): \n" <<
             "1. Battle\n" <<
@@ -355,7 +354,7 @@ int main()
 
     //The following part would be main body of the program.
     int command;
-    
+    system("clear");
     display();
     cin >> command;
     cout << endl;
@@ -369,10 +368,11 @@ int main()
             cout << "------------------------------Battle-------------------------------\n";
             cout<< "Choose battle type(please enter the number of the command):\n"
                 << "1. Fight creeps\n"
-                << "2. Fight Boss\n";
+                << "2. Fight Boss\n"
+                << "0. Exit\n";
             int type;
             cin >> type;
-            while( type !=1 && type != 2 )
+            while( type !=1 && type != 2 && type != 0)
             {
                 cout<<"Wrong command, try again!\n";
                 cin>>type;
@@ -380,27 +380,23 @@ int main()
             if( type == 1 ){
                 normalbattle( user, pokemons, magics);
             }
-            else{
+            else if(type == 2){
                 bossbattle( user, boss, magics );
             }
-            cout << "press \"Enter\" to continue" << endl;
-            system("pause");
         }
         
         
         //Bag
         else if ( command == 2 ){
+            system("clear");
             Bag( user );
-            cout << "press \"Enter\" to continue" << endl;
-            system("pause");
         }
         
         
         //Game
         else if ( command == 3 ){
+            system("clear");
             game( user );
-            cout << "press \"Enter\" to continue" << endl;
-            system("pause");
         }
         
         
