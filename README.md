@@ -33,6 +33,7 @@
      - Defeat the `Boss` and win.
      - Choose to flee if you can't beat the enemies.
 	 - Bosses cannot be ‘capture’
+     - Flee if you can't continue the battle.
    - Games
      - Earning gold and train
    - Bags
