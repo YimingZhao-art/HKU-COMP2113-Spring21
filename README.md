@@ -55,7 +55,9 @@
     - 	Try tic-tac-toe
     - 	Try guess a random numebr
     - 	Try paper-scissors-rock
-    - 	Earn 10 golds and 50 train if win.
+    - 	Notakto
+    - 	MineSweep
+    - 	Earn  golds and  train if win.
   
   - Bag interface by vector etc. :
     - Show the information of pokemons
@@ -116,6 +118,7 @@
    - `battle.cpp` battle function
    - `initial.cpp` initial the data
    - `notakto.cpp` do the notakto game
+   - `MineSweep.cpp` do the minesweep game
  - `header` i.e. `*.h`
    - `game.h` store the declaration of game 	
    - `savegame.h` store the declaration of savegame 
@@ -124,6 +127,7 @@
    - `data.h` store the struct of user, pokemon, etc
    - `initial.h`
    - `notakto.h` store the game notakto
+   - `MineSweep.h` store the game minesweep
  - `Makefile`
    - for compile the code
    - delete the `*.cpp` and `*.o` and `*.h` after compile 
