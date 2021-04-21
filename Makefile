@@ -18,7 +18,7 @@ savegame.o: savegame.cpp savegame.h
 notakto.o : notakto.cpp notakto.h
 	g++ $(FALG) -c $<	
 	
-MineSweep.o: MineSweep.cpp Minesweep.h
+MineSweep.o: MineSweep.cpp MineSweep.h
 	g++ $(FALG) -c $<
 	
 main.o: main.cpp
