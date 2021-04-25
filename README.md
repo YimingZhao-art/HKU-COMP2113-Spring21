@@ -6,6 +6,8 @@
 #### Zhao Yiming
 #### Xu   Haozhou
 
+#### This Game has been tested on CS Department academy11 server
+
 ##### Pokemon
 0. Brief Description
 
