@@ -142,3 +142,4 @@
  - open in terminal
  - `make main 1>information.txt 2>&1`
  - `./main`
+ - clean by `make clean`
