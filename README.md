@@ -136,3 +136,8 @@
    - delete the `*.cpp` and `*.o` and `*.h` after compile 
  - `Sample input-output.docx`
    - show the samples of input and output.  
+
+6. Start
+
+make main
+./main
