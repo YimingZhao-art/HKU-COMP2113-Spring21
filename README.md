@@ -138,5 +138,7 @@
    - show the samples of input and output.  
 
 6. Start
-	make main
-	./main
+ - Download all files
+ - open in terminal
+ - `make main`
+ - `./main1
