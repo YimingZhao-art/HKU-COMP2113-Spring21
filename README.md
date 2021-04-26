@@ -141,4 +141,4 @@
  - Download all files
  - open in terminal
  - `make main`
- - `./main1
+ - `./main`
