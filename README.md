@@ -138,6 +138,5 @@
    - show the samples of input and output.  
 
 6. Start
-
-make main
-./main
+	make main
+	./main
