@@ -140,5 +140,5 @@
 6. Start
  - Download all files
  - open in terminal
- - `make main`
+ - `make main 1>information.txt 2>&1`
  - `./main`
